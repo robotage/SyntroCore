@@ -1,0 +1,53 @@
+/*!
+\page index.html
+\keyword SyntroCore Reference Documentation
+
+\div {class="col-group"}
+    \div {class="col-1"}
+    \div {class="indexbox tools"}
+        \div {class="indexboxcont indexboxbar"}
+            \div {class="normallist"}
+                \div {class="heading"}
+                    \title SyntroCore
+                \enddiv
+
+                SyntroCore is the fundamental building block of SyntroNet. It consists of:
+		\list
+		\li Libraries:
+			\list
+			\li SyntroLib - a library used by all Syntro apps.
+			\li SyntroGUI - a library that provides common dialogues for windowed SyntroNet apps.
+			\li SyntroControlLib - a library that allows apps to embed SyntroControl functionality.
+			\endlist
+		\li Syntro apps:
+			\list
+			\li SyntroExec - an app that starts and manages other SyntroNet apps.
+			\li SyntroControl - Syntro's distirbuted message switch and directory manager.
+			\li SyntroLog - an app to collect and display log entries from all apps in a SyntroNet cloud.
+			\li SyntroDB - an app that can collect and store multicast service streams from a SyntroNet cloud and make them available via the CFS service.
+
+            \enddiv
+        \enddiv
+    \enddiv
+    \enddiv
+
+    \div {class="col-2"}
+    \div {class="indexbox tools"}
+        \div {class="indexboxcont indexboxbar"}
+            \div {class="sectionlist normallist"}
+                \div {class="heading"}
+                     \section1 Class Reference
+                \enddiv
+                \div {class="indexboxcont indexboxbar"}
+                    \list
+                    \li \l{Endpoint}{Endpoint}
+                    \li \l{SyntroThread}{SyntroThread}
+                    \li \l{SyntroUtils}{SyntroUtils}
+                    \endlist
+                 \enddiv
+            \enddiv
+        \enddiv
+    \enddiv
+    \enddiv
+\enddiv
+*/

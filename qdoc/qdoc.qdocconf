@@ -1,0 +1,24 @@
+project                 = SyntroCore
+description             = SyntroCore Documentation
+url                     = http://richards-tech.com
+version                 = 1.0.0
+
+depends += ../SyntroLib \
+		./
+
+headerdirs  += ../SyntroLib \
+		./
+
+imagedirs   += ../SyntroLib \
+		./
+
+sourcedirs  += ../SyntroLib \
+		./
+
+outputdir = ../SyntroDocs
+
+sources.fileextensions = "*.cpp *.qdoc *.mm *.qml"
+headers.fileextensions = "*.h *.ch *.h++ *.hh *.hpp *.hxx"
+
+include(qt-html-templates-online.qdocconf)
+include(qt-styles-online.qdocconf)

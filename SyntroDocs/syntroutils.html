@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- SyntroUtils.cpp -->
+  <title>SyntroUtils Class | SyntroCore 1.0</title>
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script src="scripts/jquery.js" type="text/javascript"></script>
+  <script src="scripts/functions.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="style/superfish.css" />
+  <link rel="stylesheet" type="text/css" href="style/narrow.css" />
+  <!--[if IE]>
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie6.css">
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie7.css">
+<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="style/style_ie8.css">
+<![endif]-->
+
+<script src="scripts/superfish.js" type="text/javascript"></script>
+<script src="scripts/narrow.js" type="text/javascript"></script>
+
+</head>
+<body class="" onload="CheckEmptyAndLoadList();">
+ <div class="header" id="qtdocheader">
+    <div class="content"> 
+    <div id="nav-logo">
+      <a href="index.html">Home</a></div>
+    <a href="index.html" class="qtref"><span>SyntroCore Reference Documentation</span></a>
+    <div id="narrowsearch"></div>
+    <div id="nav-topright">
+      <ul>
+        <li class="nav-topright-dev"><a href="http://richards-tech.com">DEV</a></li>
+        <li class="nav-topright-doc nav-topright-doc-active"><a href="http://richards-tech.com">
+          DOC</a></li>
+        <li class="nav-topright-blog"><a href="http://syntroworld.wordpress.com">BLOG</a></li>
+      </ul>
+    </div>
+    <div id="shortCut">
+      <ul>
+        <li class="shortCut-topleft-inactive"><span><a href="index.html">SyntroNet Version RT1.0.0</a></span></li>
+        </a></li>
+      </ul>
+     </div>
+   </div>
+  </div>
+  <div class="wrapper">
+    <div class="hd">
+      <span></span>
+    </div>
+    <div class="bd group">
+      <div class="sidebar">
+      </div>
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="breadcrumb toolblock">
+            <ul>
+              <li class="first"><a href="index.html">Home</a></li>
+              <!--  Breadcrumbs go here -->
+<li>SyntroUtils</li>
+<li id="buildversion">
+</li>
+            </ul>
+          </div>
+          <div class="toolbuttons toolblock">
+            <ul>
+              <li id="smallA" class="t_button">A</li>
+              <li id="medA" class="t_button active">A</li>
+              <li id="bigA" class="t_button">A</li>
+              <li id="print" class="t_button"><a href="javascript:this.print();">
+                <span>Print</span></a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="content mainContent">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#static-public-members">Static Public Members</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<h1 class="title">SyntroUtils Class</h1>
+<!-- $$$SyntroUtils-brief -->
+<p>SyntroUtils provides a set of utility functions for Syntro apps. <a href="#details">More...</a></p>
+<!-- @@@SyntroUtils -->
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> </b><tt><span class="preprocessor">#include &lt;SyntroUtils&gt;</span>
+</tt></td></tr></table><ul>
+<li><a href="syntroutils-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="static-public-members"></a>
+<h2>Static Public Members</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#IPLoopback">IPLoopback</a></b>(SYNTRO_IPADDR<i> addr</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#IPZero">IPZero</a></b>(SYNTRO_IPADDR<i> addr</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#UIDHigher">UIDHigher</a></b>(SYNTRO_UID *<i> a</i>, SYNTRO_UID *<i> b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#UIDSTRtoUID">UIDSTRtoUID</a></b>(SYNTRO_UIDSTR<i> sourceStr</i>, SYNTRO_UID *<i> destUID</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#UIDtoUIDSTR">UIDtoUIDSTR</a></b>(SYNTRO_UID *<i> sourceUID</i>, SYNTRO_UIDSTR<i> destStr</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#avmuxHeaderInit">avmuxHeaderInit</a></b>(SYNTRO_RECORD_AVMUX *<i> avmuxHead</i>, SYNTRO_AVPARAMS *<i> avParams</i>, int<i> param</i>, int<i> recordIndex</i>, int<i> muxSize</i>, int<i> videoSize</i>, int<i> audioSize</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#avmuxHeaderToAVParams">avmuxHeaderToAVParams</a></b>(SYNTRO_RECORD_AVMUX *<i> avmuxHead</i>, SYNTRO_AVPARAMS *<i> avParams</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#avmuxHeaderValidate">avmuxHeaderValidate</a></b>(SYNTRO_RECORD_AVMUX *<i> avmuxHead</i>, int<i> length</i>, unsigned char **<i> muxPtr</i>, int &amp;<i> muxLength</i>, unsigned char **<i> videoPtr</i>, int &amp;<i> videoLength</i>, unsigned char **<i> audioPtr</i>, int &amp;<i> audioLength</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#checkConsoleModeFlag">checkConsoleModeFlag</a></b>(int<i> argc</i>, char *[]<i> argv</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#checkDaemonModeFlag">checkDaemonModeFlag</a></b>(int<i> argc</i>, char *[]<i> argv</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#compareUID">compareUID</a></b>(SYNTRO_UID *<i> a</i>, SYNTRO_UID *<i> b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertIPStringToIPAddr">convertIPStringToIPAddr</a></b>(char *<i> IPStr</i>, SYNTRO_IPADDR<i> IPAddr</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertInt64ToUC8">convertInt64ToUC8</a></b>(qint64<i> val</i>, SYNTRO_UC8<i> uc8</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertIntToUC2">convertIntToUC2</a></b>(int<i> val</i>, SYNTRO_UC2<i> uc2</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertIntToUC4">convertIntToUC4</a></b>(int<i> val</i>, SYNTRO_UC4<i> uc4</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertUC2ToInt">convertUC2ToInt</a></b>(SYNTRO_UC2<i> uc2</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertUC2ToUInt">convertUC2ToUInt</a></b>(SYNTRO_UC2<i> uc2</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertUC4ToInt">convertUC4ToInt</a></b>(SYNTRO_UC4<i> uc4</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint64 </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#convertUC8ToInt64">convertUC8ToInt64</a></b>(SYNTRO_UC8<i> uc8</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#copyUC2">copyUC2</a></b>(SYNTRO_UC2<i> dst</i>, SYNTRO_UC2<i> src</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#crackServicePath">crackServicePath</a></b>(QString<i> servicePath</i>, QString &amp;<i> regionName</i>, QString &amp;<i> componentName</i>, QString &amp;<i> serviceName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_EHEAD * </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#createEHEAD">createEHEAD</a></b>(SYNTRO_UID *<i> sourceUID</i>, int<i> sourcePort</i>, SYNTRO_UID *<i> destUID</i>, int<i> destPort</i>, unsigned char<i> seq</i>, int<i> len</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#displayIPAddr">displayIPAddr</a></b>(SYNTRO_IPADDR<i> address</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#displayUID">displayUID</a></b>(SYNTRO_UID *<i> uid</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp; </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getAppName">getAppName</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const QString &amp; </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getAppType">getAppType</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QHostAddress </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getMyBroadcastAddress">getMyBroadcastAddress</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_IPADDR * </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getMyIPAddr">getMyIPAddr</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_MACADDR * </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getMyMacAddr">getMyMacAddr</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QHostAddress </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getMyNetMask">getMyNetMask</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QHostAddress </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getMySubnetAddress">getMySubnetAddress</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QSettings * </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getSettings">getSettings</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint64 </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#getTimestamp">getTimestamp</a></b>(SYNTRO_UC8<i> timestamp</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#insertStreamNameInPath">insertStreamNameInPath</a></b>(const QString &amp;<i> streamSource</i>, const QString &amp;<i> streamName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#isInMySubnet">isInMySubnet</a></b>(SYNTRO_IPADDR<i> IPAddr</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#isReservedNameCharacter">isReservedNameCharacter</a></b>(char<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#isReservedPathCharacter">isReservedPathCharacter</a></b>(char<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#isSendOK">isSendOK</a></b>(unsigned char<i> seq</i>, unsigned char<i> ack</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#loadStandardSettings">loadStandardSettings</a></b>(const char *<i> appType</i>, QStringList<i> arglist</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#makeUIDSTR">makeUIDSTR</a></b>(SYNTRO_UIDSTR<i> UIDStr</i>, SYNTRO_MACADDRSTR<i> macAddress</i>, int<i> instance</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#removeStreamNameFromPath">removeStreamNameFromPath</a></b>(const QString &amp;<i> servicePath</i>, QString &amp;<i> streamSource</i>, QString &amp;<i> streamName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#setTimestamp">setTimestamp</a></b>(SYNTRO_UC8<i> timestamp</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#swapEHead">swapEHead</a></b>(SYNTRO_EHEAD *<i> ehead</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#swapUID">swapUID</a></b>(SYNTRO_UID *<i> a</i>, SYNTRO_UID *<i> b</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#syntroAppExit">syntroAppExit</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#syntroAppInit">syntroAppInit</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> const char * </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#syntroLibVersion">syntroLibVersion</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#syntroTimerExpired">syntroTimerExpired</a></b>(qint64<i> now</i>, qint64<i> start</i>, qint64<i> interval</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntroutils.html#videoHeaderInit">videoHeaderInit</a></b>(SYNTRO_RECORD_VIDEO *<i> videoHead</i>, int<i> width</i>, int<i> height</i>, int<i> size</i>)</td></tr>
+</table>
+<a name="details"></a>
+<!-- $$$SyntroUtils-description -->
+<div class="descr">
+<h2>Detailed Description</h2>
+<p>SyntroUtils provides a set of utility functions for Syntro apps.</p>
+<p>SyntroUtils implements a range of static functions that simplify the task of writing Syntro apps.</p>
+</div>
+<!-- @@@SyntroUtils -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$IPLoopback[overload1]$$$IPLoopbackSYNTRO_IPADDR -->
+<h3 class="fn"><a name="IPLoopback"></a><span class="type">bool</span> SyntroUtils::<span class="name">IPLoopback</span>(<span class="type">SYNTRO_IPADDR</span><i> addr</i>)<tt> [static]</tt></h3>
+<p>Checks to see if the binary form IP address in <i>addr</i> is actually &quot;127.0&#x2e;0&#x2e;1&quot;.</p>
+<p>Returns true if so, false otherwise.</p>
+<!-- @@@IPLoopback -->
+<!-- $$$IPZero[overload1]$$$IPZeroSYNTRO_IPADDR -->
+<h3 class="fn"><a name="IPZero"></a><span class="type">bool</span> SyntroUtils::<span class="name">IPZero</span>(<span class="type">SYNTRO_IPADDR</span><i> addr</i>)<tt> [static]</tt></h3>
+<p>Checks to see if the binary form IP address in <i>addr</i> is actually &quot;0.0&#x2e;0&#x2e;0&quot;.</p>
+<p>Returns true if so, false otherwise.</p>
+<!-- @@@IPZero -->
+<!-- $$$UIDHigher[overload1]$$$UIDHigherSYNTRO_UID*SYNTRO_UID* -->
+<h3 class="fn"><a name="UIDHigher"></a><span class="type">bool</span> SyntroUtils::<span class="name">UIDHigher</span>(<span class="type">SYNTRO_UID</span> *<i> a</i>, <span class="type">SYNTRO_UID</span> *<i> b</i>)<tt> [static]</tt></h3>
+<p>Returns true if the binary form UID in <i>a</i> is numerically higher than the one in <i>b</i>, false otherwise.</p>
+<!-- @@@UIDHigher -->
+<!-- $$$UIDSTRtoUID[overload1]$$$UIDSTRtoUIDSYNTRO_UIDSTRSYNTRO_UID* -->
+<h3 class="fn"><a name="UIDSTRtoUID"></a><span class="type">void</span> SyntroUtils::<span class="name">UIDSTRtoUID</span>(<span class="type">SYNTRO_UIDSTR</span><i> sourceStr</i>, <span class="type">SYNTRO_UID</span> *<i> destUID</i>)<tt> [static]</tt></h3>
+<p>Converts a string form UID into a binary form UID as is actually used in Syntro messages. <i>sourceStr</i> is the string form UID, <i>destUID</i> is the binary UID.</p>
+<!-- @@@UIDSTRtoUID -->
+<!-- $$$UIDtoUIDSTR[overload1]$$$UIDtoUIDSTRSYNTRO_UID*SYNTRO_UIDSTR -->
+<h3 class="fn"><a name="UIDtoUIDSTR"></a><span class="type">void</span> SyntroUtils::<span class="name">UIDtoUIDSTR</span>(<span class="type">SYNTRO_UID</span> *<i> sourceUID</i>, <span class="type">SYNTRO_UIDSTR</span><i> destStr</i>)<tt> [static]</tt></h3>
+<p>Converts a binary form UID into a string form UID suitable for display. <i>sourceUID</i> is the binary form UID, <i>destStr</i> is the string form UID.</p>
+<!-- @@@UIDtoUIDSTR -->
+<!-- $$$avmuxHeaderInit[overload1]$$$avmuxHeaderInitSYNTRO_RECORD_AVMUX*SYNTRO_AVPARAMS*intintintintint -->
+<h3 class="fn"><a name="avmuxHeaderInit"></a><span class="type">void</span> SyntroUtils::<span class="name">avmuxHeaderInit</span>(<span class="type">SYNTRO_RECORD_AVMUX</span> *<i> avmuxHead</i>, <span class="type">SYNTRO_AVPARAMS</span> *<i> avParams</i>, <span class="type">int</span><i> param</i>, <span class="type">int</span><i> recordIndex</i>, <span class="type">int</span><i> muxSize</i>, <span class="type">int</span><i> videoSize</i>, <span class="type">int</span><i> audioSize</i>)<tt> [static]</tt></h3>
+<!-- @@@avmuxHeaderInit -->
+<!-- $$$avmuxHeaderToAVParams[overload1]$$$avmuxHeaderToAVParamsSYNTRO_RECORD_AVMUX*SYNTRO_AVPARAMS* -->
+<h3 class="fn"><a name="avmuxHeaderToAVParams"></a><span class="type">void</span> SyntroUtils::<span class="name">avmuxHeaderToAVParams</span>(<span class="type">SYNTRO_RECORD_AVMUX</span> *<i> avmuxHead</i>, <span class="type">SYNTRO_AVPARAMS</span> *<i> avParams</i>)<tt> [static]</tt></h3>
+<!-- @@@avmuxHeaderToAVParams -->
+<!-- $$$avmuxHeaderValidate[overload1]$$$avmuxHeaderValidateSYNTRO_RECORD_AVMUX*intunsignedchar**int&unsignedchar**int&unsignedchar**int& -->
+<h3 class="fn"><a name="avmuxHeaderValidate"></a><span class="type">bool</span> SyntroUtils::<span class="name">avmuxHeaderValidate</span>(<span class="type">SYNTRO_RECORD_AVMUX</span> *<i> avmuxHead</i>, <span class="type">int</span><i> length</i>, <span class="type">unsigned</span> <span class="type">char</span> **<i> muxPtr</i>, <span class="type">int</span> &amp;<i> muxLength</i>, <span class="type">unsigned</span> <span class="type">char</span> **<i> videoPtr</i>, <span class="type">int</span> &amp;<i> videoLength</i>, <span class="type">unsigned</span> <span class="type">char</span> **<i> audioPtr</i>, <span class="type">int</span> &amp;<i> audioLength</i>)<tt> [static]</tt></h3>
+<p>Performs validation of an avmux record. <i>avmuxHead</i> is a pointer to the avmux record, <i>length</i> is its total length (header plus data). The function returns true if the header passes validation. This means that the lengths of the component parts correctly add up to the total length. If the function returns false then the avmux record should not be processed further.</p>
+<p>Additionally, the function can return useful data extracted form the header. <i>muxPtr</i> is a pointer to a pointer to the mux data part, <i>muxLength</i> is a reference to its length with the same for <i>videoPtr</i>, <i>videoLength</i>, <i>audioPtr</i> and <i>audioLength</i>. If NULL is passed as any of these pointers, that variable is not set.</p>
+<!-- @@@avmuxHeaderValidate -->
+<!-- $$$checkConsoleModeFlag[overload1]$$$checkConsoleModeFlagintchar*[] -->
+<h3 class="fn"><a name="checkConsoleModeFlag"></a><span class="type">bool</span> SyntroUtils::<span class="name">checkConsoleModeFlag</span>(<span class="type">int</span><i> argc</i>, <span class="type">char</span> *[]<i> argv</i>)<tt> [static]</tt></h3>
+<p>Checks to see if the console mode flag &quot;-c&quot; is present in the runtime arguments supplied to the app on startup. <i>argc</i> and <i>argv</i> are the traditional argument count and string array form of the arguments.</p>
+<p>Returns true if it is, false otherwise.</p>
+<!-- @@@checkConsoleModeFlag -->
+<!-- $$$checkDaemonModeFlag[overload1]$$$checkDaemonModeFlagintchar*[] -->
+<h3 class="fn"><a name="checkDaemonModeFlag"></a><span class="type">bool</span> SyntroUtils::<span class="name">checkDaemonModeFlag</span>(<span class="type">int</span><i> argc</i>, <span class="type">char</span> *[]<i> argv</i>)<tt> [static]</tt></h3>
+<p>Checks to see if the daemon mode flag &quot;-d&quot; is present in the runtime arguments supplied to the app on startup. <i>argc</i> and <i>argv</i> are the traditional argument count and string array form of the arguments.</p>
+<p>Returns true if it is, false otherwise.</p>
+<!-- @@@checkDaemonModeFlag -->
+<!-- $$$compareUID[overload1]$$$compareUIDSYNTRO_UID*SYNTRO_UID* -->
+<h3 class="fn"><a name="compareUID"></a><span class="type">bool</span> SyntroUtils::<span class="name">compareUID</span>(<span class="type">SYNTRO_UID</span> *<i> a</i>, <span class="type">SYNTRO_UID</span> *<i> b</i>)<tt> [static]</tt></h3>
+<p>Returns true if the binary form UIDs in <i>a</i> and <i>b</i> are equal, false otherwise.</p>
+<!-- @@@compareUID -->
+<!-- $$$convertIPStringToIPAddr[overload1]$$$convertIPStringToIPAddrchar*SYNTRO_IPADDR -->
+<h3 class="fn"><a name="convertIPStringToIPAddr"></a><span class="type">void</span> SyntroUtils::<span class="name">convertIPStringToIPAddr</span>(<span class="type">char</span> *<i> IPStr</i>, <span class="type">SYNTRO_IPADDR</span><i> IPAddr</i>)<tt> [static]</tt></h3>
+<p>Converts a dotted string form IP address in <i>IPStr</i> to a binary form IP address in <i>IPAddr</i>.</p>
+<!-- @@@convertIPStringToIPAddr -->
+<!-- $$$convertInt64ToUC8[overload1]$$$convertInt64ToUC8qint64SYNTRO_UC8 -->
+<h3 class="fn"><a name="convertInt64ToUC8"></a><span class="type">void</span> SyntroUtils::<span class="name">convertInt64ToUC8</span>(<span class="type">qint64</span><i> val</i>, <span class="type">SYNTRO_UC8</span><i> uc8</i>)<tt> [static]</tt></h3>
+<p>Converts an int64 value in <i>val</i> into a SYNTRO_UC8 variable <i>uc8</i>.</p>
+<!-- @@@convertInt64ToUC8 -->
+<!-- $$$convertIntToUC2[overload1]$$$convertIntToUC2intSYNTRO_UC2 -->
+<h3 class="fn"><a name="convertIntToUC2"></a><span class="type">void</span> SyntroUtils::<span class="name">convertIntToUC2</span>(<span class="type">int</span><i> val</i>, <span class="type">SYNTRO_UC2</span><i> uc2</i>)<tt> [static]</tt></h3>
+<p>Converts an integer value in <i>val</i> into a SYNTRO_UC2 variable <i>uc2</i>.</p>
+<!-- @@@convertIntToUC2 -->
+<!-- $$$convertIntToUC4[overload1]$$$convertIntToUC4intSYNTRO_UC4 -->
+<h3 class="fn"><a name="convertIntToUC4"></a><span class="type">void</span> SyntroUtils::<span class="name">convertIntToUC4</span>(<span class="type">int</span><i> val</i>, <span class="type">SYNTRO_UC4</span><i> uc4</i>)<tt> [static]</tt></h3>
+<p>Converts an integer value in <i>val</i> into a SYNTRO_UC4 variable <i>uc4</i>.</p>
+<!-- @@@convertIntToUC4 -->
+<!-- $$$convertUC2ToInt[overload1]$$$convertUC2ToIntSYNTRO_UC2 -->
+<h3 class="fn"><a name="convertUC2ToInt"></a><span class="type">int</span> SyntroUtils::<span class="name">convertUC2ToInt</span>(<span class="type">SYNTRO_UC2</span><i> uc2</i>)<tt> [static]</tt></h3>
+<p>Returns the integer value of the SYNTRO_UC2 variable <i>uc2</i>.</p>
+<!-- @@@convertUC2ToInt -->
+<!-- $$$convertUC2ToUInt[overload1]$$$convertUC2ToUIntSYNTRO_UC2 -->
+<h3 class="fn"><a name="convertUC2ToUInt"></a><span class="type">int</span> SyntroUtils::<span class="name">convertUC2ToUInt</span>(<span class="type">SYNTRO_UC2</span><i> uc2</i>)<tt> [static]</tt></h3>
+<p>Returns the unsigned integer value of the SYNTRO_UC2 variable <i>uc2</i>.</p>
+<!-- @@@convertUC2ToUInt -->
+<!-- $$$convertUC4ToInt[overload1]$$$convertUC4ToIntSYNTRO_UC4 -->
+<h3 class="fn"><a name="convertUC4ToInt"></a><span class="type">int</span> SyntroUtils::<span class="name">convertUC4ToInt</span>(<span class="type">SYNTRO_UC4</span><i> uc4</i>)<tt> [static]</tt></h3>
+<p>Returns the integer value of the SYNTRO_UC4 variable <i>uc4</i>.</p>
+<!-- @@@convertUC4ToInt -->
+<!-- $$$convertUC8ToInt64[overload1]$$$convertUC8ToInt64SYNTRO_UC8 -->
+<h3 class="fn"><a name="convertUC8ToInt64"></a><span class="type">qint64</span> SyntroUtils::<span class="name">convertUC8ToInt64</span>(<span class="type">SYNTRO_UC8</span><i> uc8</i>)<tt> [static]</tt></h3>
+<p>Returns the int64 value of the SYNTRO_UC8 variable <i>uc8</i>.</p>
+<!-- @@@convertUC8ToInt64 -->
+<!-- $$$copyUC2[overload1]$$$copyUC2SYNTRO_UC2SYNTRO_UC2 -->
+<h3 class="fn"><a name="copyUC2"></a><span class="type">void</span> SyntroUtils::<span class="name">copyUC2</span>(<span class="type">SYNTRO_UC2</span><i> dst</i>, <span class="type">SYNTRO_UC2</span><i> src</i>)<tt> [static]</tt></h3>
+<p>Copies the contents of the SYNTRO_UC2 variable <i>src</i> into <i>dst</i>.</p>
+<!-- @@@copyUC2 -->
+<!-- $$$crackServicePath[overload1]$$$crackServicePathQStringQString&QString&QString& -->
+<h3 class="fn"><a name="crackServicePath"></a><span class="type">bool</span> SyntroUtils::<span class="name">crackServicePath</span>(<span class="type">QString</span><i> servicePath</i>, <span class="type">QString</span> &amp;<i> regionName</i>, <span class="type">QString</span> &amp;<i> componentName</i>, <span class="type">QString</span> &amp;<i> serviceName</i>)<tt> [static]</tt></h3>
+<p>This function takes a service path in <i>servicePath</i> and breaks it up into its constituent components, <i>regionName</i>, <i>componentName</i> and <i>serviceName</i>.</p>
+<p>It returns true if the service path is valid, false otherwise.</p>
+<!-- @@@crackServicePath -->
+<!-- $$$createEHEAD[overload1]$$$createEHEADSYNTRO_UID*intSYNTRO_UID*intunsignedcharint -->
+<h3 class="fn"><a name="createEHEAD"></a><span class="type">SYNTRO_EHEAD</span> * SyntroUtils::<span class="name">createEHEAD</span>(<span class="type">SYNTRO_UID</span> *<i> sourceUID</i>, <span class="type">int</span><i> sourcePort</i>, <span class="type">SYNTRO_UID</span> *<i> destUID</i>, <span class="type">int</span><i> destPort</i>, <span class="type">unsigned</span> <span class="type">char</span><i> seq</i>, <span class="type">int</span><i> len</i>)<tt> [static]</tt></h3>
+<p>Generates and returns a pointer to a SYNTRO_EHEAD structure with anough space for appended data. <i>sourceUID</i> is the binary form UID source address, <i>sourcePort</i> is the source service port number, <i>destUID</i> is the binary form destination UID, <i>destPort</i> is the destination service port number, <i>seq</i> is the send sequence number to use and <i>len</i> is the length of the extra data to be allocated after the SYNTRO_EHEAD structure.</p>
+<p>The length of extra allocated data can be 0 if just the SYNTRO_EHEAD structure itself is needed.</p>
+<p>The memory for the SYNTRO_EHEAD is malloced and therefore needs to be freed at some later date.</p>
+<!-- @@@createEHEAD -->
+<!-- $$$displayIPAddr[overload1]$$$displayIPAddrSYNTRO_IPADDR -->
+<h3 class="fn"><a name="displayIPAddr"></a><span class="type">QString</span> SyntroUtils::<span class="name">displayIPAddr</span>(<span class="type">SYNTRO_IPADDR</span><i> address</i>)<tt> [static]</tt></h3>
+<p>Returns a QString with the supplied binary form IP address in <i>address</i>. The QString is in the traditional dotted format - &quot;xx.xx.xx.xx&quot;.</p>
+<!-- @@@displayIPAddr -->
+<!-- $$$displayUID[overload1]$$$displayUIDSYNTRO_UID* -->
+<h3 class="fn"><a name="displayUID"></a><span class="type">QString</span> SyntroUtils::<span class="name">displayUID</span>(<span class="type">SYNTRO_UID</span> *<i> uid</i>)<tt> [static]</tt></h3>
+<p>Returns a QString with a printable version of the UID in <i>uid</i>.</p>
+<!-- @@@displayUID -->
+<!-- $$$getAppName[overload1]$$$getAppName -->
+<h3 class="fn"><a name="getAppName"></a>const <span class="type">QString</span> &amp; SyntroUtils::<span class="name">getAppName</span>()<tt> [static]</tt></h3>
+<p>Returns the name of the app. Default is the hostname unless it has been overridden in the app's .ini file.</p>
+<!-- @@@getAppName -->
+<!-- $$$getAppType[overload1]$$$getAppType -->
+<h3 class="fn"><a name="getAppType"></a>const <span class="type">QString</span> &amp; SyntroUtils::<span class="name">getAppType</span>()<tt> [static]</tt></h3>
+<p>Returns the type of the app. This is hard-coded for any particular app.</p>
+<!-- @@@getAppType -->
+<!-- $$$getMyBroadcastAddress[overload1]$$$getMyBroadcastAddress -->
+<h3 class="fn"><a name="getMyBroadcastAddress"></a><span class="type">QHostAddress</span> SyntroUtils::<span class="name">getMyBroadcastAddress</span>()<tt> [static]</tt></h3>
+<p>Returns the broadcast address of the selected network interface.</p>
+<!-- @@@getMyBroadcastAddress -->
+<!-- $$$getMyIPAddr[overload1]$$$getMyIPAddr -->
+<h3 class="fn"><a name="getMyIPAddr"></a><span class="type">SYNTRO_IPADDR</span> * SyntroUtils::<span class="name">getMyIPAddr</span>()<tt> [static]</tt></h3>
+<p>Returns the IP address associated with the selected network interface.</p>
+<!-- @@@getMyIPAddr -->
+<!-- $$$getMyMacAddr[overload1]$$$getMyMacAddr -->
+<h3 class="fn"><a name="getMyMacAddr"></a><span class="type">SYNTRO_MACADDR</span> * SyntroUtils::<span class="name">getMyMacAddr</span>()<tt> [static]</tt></h3>
+<p>Returns the MAC address associated with the selected network interface.</p>
+<!-- @@@getMyMacAddr -->
+<!-- $$$getMyNetMask[overload1]$$$getMyNetMask -->
+<h3 class="fn"><a name="getMyNetMask"></a><span class="type">QHostAddress</span> SyntroUtils::<span class="name">getMyNetMask</span>()<tt> [static]</tt></h3>
+<p>Returns the netmask of the selected network interface.</p>
+<!-- @@@getMyNetMask -->
+<!-- $$$getMySubnetAddress[overload1]$$$getMySubnetAddress -->
+<h3 class="fn"><a name="getMySubnetAddress"></a><span class="type">QHostAddress</span> SyntroUtils::<span class="name">getMySubnetAddress</span>()<tt> [static]</tt></h3>
+<p>Returns the subnet address of the selected network interface.</p>
+<!-- @@@getMySubnetAddress -->
+<!-- $$$getSettings[overload1]$$$getSettings -->
+<h3 class="fn"><a name="getSettings"></a><span class="type">QSettings</span> * SyntroUtils::<span class="name">getSettings</span>()<tt> [static]</tt></h3>
+<p>Returns a pointer to QSettings object for the app's .ini file. Note: the caller must delete the QSettiongs object at some point and must not pass it to another thread.</p>
+<!-- @@@getSettings -->
+<!-- $$$getTimestamp[overload1]$$$getTimestampSYNTRO_UC8 -->
+<h3 class="fn"><a name="getTimestamp"></a><span class="type">qint64</span> SyntroUtils::<span class="name">getTimestamp</span>(<span class="type">SYNTRO_UC8</span><i> timestamp</i>)<tt> [static]</tt></h3>
+<p>Returns the timestamp in <i>timestamp</i> as a qint64.</p>
+<!-- @@@getTimestamp -->
+<!-- $$$insertStreamNameInPath[overload1]$$$insertStreamNameInPathconstQString&constQString& -->
+<h3 class="fn"><a name="insertStreamNameInPath"></a><span class="type">QString</span> SyntroUtils::<span class="name">insertStreamNameInPath</span>(const <span class="type">QString</span> &amp;<i> streamSource</i>, const <span class="type">QString</span> &amp;<i> streamName</i>)<tt> [static]</tt></h3>
+<p>This funtion takes <i>streamSource</i>, a QString containing the app name of a stream source possibly with a concententated type qualifier (eg :lr for low rate video) and inserts the <i>streamName</i> at the coorrect point and returns the result as a new QString.</p>
+<p>For example &quot;Ubuntu:lr&quot; with a stream name of &quot;video&quot; would result in &quot;Ubuntu/video:lr&quot;.</p>
+<p>In many apps, users may specify the app name and type qualifier but the stream name is fixed. This function provides a convenient way of integrating the two ready to activate a remote stream for example.</p>
+<!-- @@@insertStreamNameInPath -->
+<!-- $$$isInMySubnet[overload1]$$$isInMySubnetSYNTRO_IPADDR -->
+<h3 class="fn"><a name="isInMySubnet"></a><span class="type">bool</span> SyntroUtils::<span class="name">isInMySubnet</span>(<span class="type">SYNTRO_IPADDR</span><i> IPAddr</i>)<tt> [static]</tt></h3>
+<p>Returns true if the supplied binary form IP address <i>IPAddr</i> is in the same subnet as this app.</p>
+<!-- @@@isInMySubnet -->
+<!-- $$$isReservedNameCharacter[overload1]$$$isReservedNameCharacterchar -->
+<h3 class="fn"><a name="isReservedNameCharacter"></a><span class="type">bool</span> SyntroUtils::<span class="name">isReservedNameCharacter</span>(<span class="type">char</span><i> value</i>)<tt> [static]</tt></h3>
+<p>Returns true if the character in <i>value</i> is a character that is not permitted in service names, false otherwise.</p>
+<!-- @@@isReservedNameCharacter -->
+<!-- $$$isReservedPathCharacter[overload1]$$$isReservedPathCharacterchar -->
+<h3 class="fn"><a name="isReservedPathCharacter"></a><span class="type">bool</span> SyntroUtils::<span class="name">isReservedPathCharacter</span>(<span class="type">char</span><i> value</i>)<tt> [static]</tt></h3>
+<p>Returns true if the character in <i>value</i> is a character that is not permitted in service paths, false otherwise.</p>
+<!-- @@@isReservedPathCharacter -->
+<!-- $$$isSendOK[overload1]$$$isSendOKunsignedcharunsignedchar -->
+<h3 class="fn"><a name="isSendOK"></a><span class="type">bool</span> SyntroUtils::<span class="name">isSendOK</span>(<span class="type">unsigned</span> <span class="type">char</span><i> seq</i>, <span class="type">unsigned</span> <span class="type">char</span><i> ack</i>)<tt> [static]</tt></h3>
+<p>This function, typically called in the app's client thread, can be used to determine if the multicast service send window is currently open. <i>seq</i> is the current send sequence number, <i>ack</i> is the last received ack sequence number. Returns true if the window is open, false otherwise.</p>
+<!-- @@@isSendOK -->
+<!-- $$$loadStandardSettings[overload1]$$$loadStandardSettingsconstchar*QStringList -->
+<h3 class="fn"><a name="loadStandardSettings"></a><span class="type">void</span> SyntroUtils::<span class="name">loadStandardSettings</span>(const <span class="type">char</span> *<i> appType</i>, <span class="type">QStringList</span><i> arglist</i>)<tt> [static]</tt></h3>
+<p>This function is normally called from within main.cpp of a Syntro app before the main code begins. It makes sure that settings common to all applications are set up correctly in the .ini file and processes the runtime arguments.</p>
+<p>Supported runtime arguments are:</p>
+<ul>
+<li>-a&lt;adaptor&gt;: adaptor. Can be used to specify a particular network adaptor for use. an example would be -aeth0.</li>
+<li>-c: console mode. If present, the app should run in console mode rather than windowed mode.</li>
+<li>-d: daemon mode. If present, the app should run in daemon mode</li>
+<li>-s&lt;path&gt;: settings file path. By default, the app will use the file &lt;apptype&gt;.ini in the working directory. The -s option can be used to override that and specify a path to anywhere in the file system.</li>
+</ul>
+<p><i>appType</i> is the application type string, <i>arglist</i> is the list of arguments supplied to the app.</p>
+<!-- @@@loadStandardSettings -->
+<!-- $$$makeUIDSTR[overload1]$$$makeUIDSTRSYNTRO_UIDSTRSYNTRO_MACADDRSTRint -->
+<h3 class="fn"><a name="makeUIDSTR"></a><span class="type">void</span> SyntroUtils::<span class="name">makeUIDSTR</span>(<span class="type">SYNTRO_UIDSTR</span><i> UIDStr</i>, <span class="type">SYNTRO_MACADDRSTR</span><i> macAddress</i>, <span class="type">int</span><i> instance</i>)<tt> [static]</tt></h3>
+<p>Converts a string form of the current MAC address (in <i>macAddress</i>) and the app's current <i>instance</i> number into a UID string in <i>UIDStr</i>. This is in a form that can be displayed easily.</p>
+<!-- @@@makeUIDSTR -->
+<!-- $$$removeStreamNameFromPath[overload1]$$$removeStreamNameFromPathconstQString&QString&QString& -->
+<h3 class="fn"><a name="removeStreamNameFromPath"></a><span class="type">void</span> SyntroUtils::<span class="name">removeStreamNameFromPath</span>(const <span class="type">QString</span> &amp;<i> servicePath</i>, <span class="type">QString</span> &amp;<i> streamSource</i>, <span class="type">QString</span> &amp;<i> streamName</i>)<tt> [static]</tt></h3>
+<p>This funtion takes <i>servicePath</i>, and return a <i>streamSource</i> that is the servicePath with the stream name removed. The stream name is returned in <i>streamName</i>.</p>
+<p>For example &quot;Ubuntu/video:lr&quot; would return a streamSource of &quot;ubuntu:lr&quot; and a streamName of &quot;video&quot;.</p>
+<!-- @@@removeStreamNameFromPath -->
+<!-- $$$setTimestamp[overload1]$$$setTimestampSYNTRO_UC8 -->
+<h3 class="fn"><a name="setTimestamp"></a><span class="type">void</span> SyntroUtils::<span class="name">setTimestamp</span>(<span class="type">SYNTRO_UC8</span><i> timestamp</i>)<tt> [static]</tt></h3>
+<p>Sets the current mS resolution timestamp into <i>timestamp</i>.</p>
+<!-- @@@setTimestamp -->
+<!-- $$$swapEHead[overload1]$$$swapEHeadSYNTRO_EHEAD* -->
+<h3 class="fn"><a name="swapEHead"></a><span class="type">void</span> SyntroUtils::<span class="name">swapEHead</span>(<span class="type">SYNTRO_EHEAD</span> *<i> ehead</i>)<tt> [static]</tt></h3>
+<p>This function swaps the source and destination UIDs and ports in the SYNTRO_EHEAD structure in <i>ehead</i>. Often used to return a Syntro message to its origin.</p>
+<!-- @@@swapEHead -->
+<!-- $$$swapUID[overload1]$$$swapUIDSYNTRO_UID*SYNTRO_UID* -->
+<h3 class="fn"><a name="swapUID"></a><span class="type">void</span> SyntroUtils::<span class="name">swapUID</span>(<span class="type">SYNTRO_UID</span> *<i> a</i>, <span class="type">SYNTRO_UID</span> *<i> b</i>)<tt> [static]</tt></h3>
+<p>This function swaps the contents of the twp binary form UIDs <i>a</i> and <i>b</i>.</p>
+<!-- @@@swapUID -->
+<!-- $$$syntroAppExit[overload1]$$$syntroAppExit -->
+<h3 class="fn"><a name="syntroAppExit"></a><span class="type">void</span> SyntroUtils::<span class="name">syntroAppExit</span>()<tt> [static]</tt></h3>
+<p>This function should be called whent he Syntro app is exiting. In a windowed app, this is normally the last thing called in the closeEvent() event handler. In a console app, this should be called before exiting the app.</p>
+<!-- @@@syntroAppExit -->
+<!-- $$$syntroAppInit[overload1]$$$syntroAppInit -->
+<h3 class="fn"><a name="syntroAppInit"></a><span class="type">void</span> SyntroUtils::<span class="name">syntroAppInit</span>()<tt> [static]</tt></h3>
+<p>This function performs essential initialization required by all Syntro apps. In the case of windowed apps, it should be called in the constructor of the class derived from QMainWindow. Console or daemon apps should call this function in the constructor fo the class derived from QThread.</p>
+<p>Note that it assumes that <a href="syntroutils.html#loadStandardSettings">loadStandardSettings</a>() has been called.</p>
+<!-- @@@syntroAppInit -->
+<!-- $$$syntroLibVersion[overload1]$$$syntroLibVersion -->
+<h3 class="fn"><a name="syntroLibVersion"></a>const <span class="type">char</span> * SyntroUtils::<span class="name">syntroLibVersion</span>()<tt> [static]</tt></h3>
+<p>Returns the SyntroLib version string.</p>
+<!-- @@@syntroLibVersion -->
+<!-- $$$syntroTimerExpired[overload1]$$$syntroTimerExpiredqint64qint64qint64 -->
+<h3 class="fn"><a name="syntroTimerExpired"></a><span class="type">bool</span> SyntroUtils::<span class="name">syntroTimerExpired</span>(<span class="type">qint64</span><i> now</i>, <span class="type">qint64</span><i> start</i>, <span class="type">qint64</span><i> interval</i>)<tt> [static]</tt></h3>
+<p>Provides a convenient way of checking to see if a timer has expired. <i>now</i> is the current time, usually the output of SyntroClock(). <i>start</i> is the start time of the timer, usually the value of SyntroClock when the timer was started. <i>interval</i> is the length of the timer.</p>
+<p>Returns true if the timer has expired, false otherwise. If <i>interval</i> is 0, the function always returns false, providing an easy way of disabling timers.</p>
+<!-- @@@syntroTimerExpired -->
+<!-- $$$videoHeaderInit[overload1]$$$videoHeaderInitSYNTRO_RECORD_VIDEO*intintint -->
+<h3 class="fn"><a name="videoHeaderInit"></a><span class="type">void</span> SyntroUtils::<span class="name">videoHeaderInit</span>(<span class="type">SYNTRO_RECORD_VIDEO</span> *<i> videoHead</i>, <span class="type">int</span><i> width</i>, <span class="type">int</span><i> height</i>, <span class="type">int</span><i> size</i>)<tt> [static]</tt></h3>
+<!-- @@@videoHeaderInit -->
+</div>
+      </div>
+    </div>
+    </div> 
+    <div class="ft">
+      <span></span>
+    </div>
+  </div> 
+  <div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2014 Scott Ellis and Richard Barnett     <br />
+    <p>
+      The documentation provided herein is licensed under the terms of the
+      <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation
+      License version 1.3</a> as published by the Free Software Foundation.</p>
+    <br />
+  </div>
+
+  <script src="scripts/functions.js" type="text/javascript"></script>
+</body>
+</html>

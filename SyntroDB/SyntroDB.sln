@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntroDB", "SyntroDB.vcxproj", "{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+		StaticDebug|Win32 = StaticDebug|Win32
+		StaticRelease|Win32 = StaticRelease|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.Debug|Win32.Build.0 = Debug|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.Release|Win32.ActiveCfg = Release|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.Release|Win32.Build.0 = Release|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.StaticDebug|Win32.ActiveCfg = StaticDebug|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.StaticDebug|Win32.Build.0 = StaticDebug|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.StaticRelease|Win32.ActiveCfg = StaticRelease|Win32
+		{21B5C482-CD24-452E-A4CD-E1CB06E7DAB8}.StaticRelease|Win32.Build.0 = StaticRelease|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

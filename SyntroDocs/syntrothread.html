@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- SyntroThread.cpp -->
+  <title>SyntroThread Class | SyntroCore 1.0</title>
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script src="scripts/jquery.js" type="text/javascript"></script>
+  <script src="scripts/functions.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="style/superfish.css" />
+  <link rel="stylesheet" type="text/css" href="style/narrow.css" />
+  <!--[if IE]>
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie6.css">
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie7.css">
+<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="style/style_ie8.css">
+<![endif]-->
+
+<script src="scripts/superfish.js" type="text/javascript"></script>
+<script src="scripts/narrow.js" type="text/javascript"></script>
+
+</head>
+<body class="" onload="CheckEmptyAndLoadList();">
+ <div class="header" id="qtdocheader">
+    <div class="content"> 
+    <div id="nav-logo">
+      <a href="index.html">Home</a></div>
+    <a href="index.html" class="qtref"><span>SyntroCore Reference Documentation</span></a>
+    <div id="narrowsearch"></div>
+    <div id="nav-topright">
+      <ul>
+        <li class="nav-topright-dev"><a href="http://richards-tech.com">DEV</a></li>
+        <li class="nav-topright-doc nav-topright-doc-active"><a href="http://richards-tech.com">
+          DOC</a></li>
+        <li class="nav-topright-blog"><a href="http://syntroworld.wordpress.com">BLOG</a></li>
+      </ul>
+    </div>
+    <div id="shortCut">
+      <ul>
+        <li class="shortCut-topleft-inactive"><span><a href="index.html">SyntroNet Version RT1.0.0</a></span></li>
+        </a></li>
+      </ul>
+     </div>
+   </div>
+  </div>
+  <div class="wrapper">
+    <div class="hd">
+      <span></span>
+    </div>
+    <div class="bd group">
+      <div class="sidebar">
+      </div>
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="breadcrumb toolblock">
+            <ul>
+              <li class="first"><a href="index.html">Home</a></li>
+              <!--  Breadcrumbs go here -->
+<li>SyntroThread</li>
+<li id="buildversion">
+</li>
+            </ul>
+          </div>
+          <div class="toolbuttons toolblock">
+            <ul>
+              <li id="smallA" class="t_button">A</li>
+              <li id="medA" class="t_button active">A</li>
+              <li id="bigA" class="t_button">A</li>
+              <li id="print" class="t_button"><a href="javascript:this.print();">
+                <span>Print</span></a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="content mainContent">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#public-slots">Public Slots</a></li>
+<li class="level1"><a href="#signals">Signals</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<h1 class="title">SyntroThread Class</h1>
+<!-- $$$SyntroThread-brief -->
+<p>SyntroThread is a lightweight wrapper for threading. <a href="#details">More...</a></p>
+<!-- @@@SyntroThread -->
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> </b><tt><span class="preprocessor">#include &lt;SyntroThread&gt;</span>
+</tt></td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherited By:</td><td class="memItemRight bottomAlign"> <p><a href="endpoint.html">Endpoint</a>.</p>
+</td></tr></table><ul>
+<li><a href="syntrothread-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#SyntroThread">SyntroThread</a></b>(const QString &amp;<i> threadName</i>, const QString &amp;<i> logTag</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#exitThread">exitThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#isRunning">isRunning</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#postThreadMessage">postThreadMessage</a></b>(int<i> message</i>, int<i> intParam</i>, void *<i> ptrParam</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#resumeThread">resumeThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> InternalThread * </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#thread">thread</a></b>()</td></tr>
+</table>
+<a name="public-slots"></a>
+<h2>Public Slots</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#cleanup">cleanup</a></b>()</td></tr>
+</table>
+<a name="signals"></a>
+<h2>Signals</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#internalEndThread">internalEndThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#internalKillThread">internalKillThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#running">running</a></b>()</td></tr>
+</table>
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#finishThread">finishThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#initThread">initThread</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#msleep">msleep</a></b>(unsigned long<i> msecs</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="syntrothread.html#processMessage">processMessage</a></b>(SyntroThreadMsg *<i> msg</i>)</td></tr>
+</table>
+<a name="details"></a>
+<!-- $$$SyntroThread-description -->
+<div class="descr">
+<h2>Detailed Description</h2>
+<p>SyntroThread is a lightweight wrapper for threading.</p>
+<p>SyntroThread is a thin wrapper layer that simplifies the use of QThread. It provides a Windows-style message passing queue and associated functions. The normal sequence of events is to create a SyntroThread, perform any external initialization that might be required and then to call <a href="syntrothread.html#resumeThread">resumeThread</a>(). To kill the thread, call emit finished().</p>
+<p>SyntroThread would normally be subclassed to provide customized thread functionality. Apart from standard Qt type functions, <a href="syntrothread.html#initThread">initThread</a>() can be used to perform initialization and <a href="syntrothread.html#finishThread">finishThread</a>() can be used to perform clean up before the thread is destroyed.</p>
+</div>
+<!-- @@@SyntroThread -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$SyntroThread[overload1]$$$SyntroThreadconstQString&constQString& -->
+<h3 class="fn"><a name="SyntroThread"></a>SyntroThread::<span class="name">SyntroThread</span>(const <span class="type">QString</span> &amp;<i> threadName</i>, const <span class="type">QString</span> &amp;<i> logTag</i>)</h3>
+<p>This is the constructor for <a href="syntrothread.html">SyntroThread</a>. It may be called with <i>threadName</i>, a name for the thread  this can be useful for debugging.</p>
+<!-- @@@SyntroThread -->
+<!-- $$$cleanup[overload1]$$$cleanup -->
+<h3 class="fn"><a name="cleanup"></a><span class="type">void</span> SyntroThread::<span class="name">cleanup</span>()<tt> [slot]</tt></h3>
+<p>cleanup receives the finished signal, calls finishing() and then emits quit to kill everything.</p>
+<!-- @@@cleanup -->
+<!-- $$$exitThread[overload1]$$$exitThread -->
+<h3 class="fn"><a name="exitThread"></a><span class="type">void</span> SyntroThread::<span class="name">exitThread</span>()</h3>
+<p>This function should be called to terminate and delete the thread. It emits the endThread() signal that initiates the close down and deletion.</p>
+<!-- @@@exitThread -->
+<!-- $$$finishThread[overload1]$$$finishThread -->
+<h3 class="fn"><a name="finishThread"></a><span class="type">void</span> SyntroThread::<span class="name">finishThread</span>()<tt> [virtual protected]</tt></h3>
+<!-- @@@finishThread -->
+<!-- $$$initThread[overload1]$$$initThread -->
+<h3 class="fn"><a name="initThread"></a><span class="type">void</span> SyntroThread::<span class="name">initThread</span>()<tt> [virtual protected]</tt></h3>
+<p>intiThread() is called as part of the <a href="syntrothread.html#resumeThread">resumeThread</a>() processing and should be used for any initialization that the thread needs to perform prior to normal execution.</p>
+<!-- @@@initThread -->
+<!-- $$$internalEndThread[overload1]$$$internalEndThread -->
+<h3 class="fn"><a name="internalEndThread"></a><span class="type">void</span> SyntroThread::<span class="name">internalEndThread</span>()<tt> [signal]</tt></h3>
+<!-- @@@internalEndThread -->
+<!-- $$$internalKillThread[overload1]$$$internalKillThread -->
+<h3 class="fn"><a name="internalKillThread"></a><span class="type">void</span> SyntroThread::<span class="name">internalKillThread</span>()<tt> [signal]</tt></h3>
+<!-- @@@internalKillThread -->
+<!-- $$$isRunning[overload1]$$$isRunning -->
+<h3 class="fn"><a name="isRunning"></a><span class="type">bool</span> SyntroThread::<span class="name">isRunning</span>()</h3>
+<!-- @@@isRunning -->
+<!-- $$$msleep[overload1]$$$msleepunsignedlong -->
+<h3 class="fn"><a name="msleep"></a><span class="type">void</span> SyntroThread::<span class="name">msleep</span>(<span class="type">unsigned</span> <span class="type">long</span><i> msecs</i>)<tt> [protected]</tt></h3>
+<!-- @@@msleep -->
+<!-- $$$postThreadMessage[overload1]$$$postThreadMessageintintvoid* -->
+<h3 class="fn"><a name="postThreadMessage"></a><span class="type">void</span> SyntroThread::<span class="name">postThreadMessage</span>(<span class="type">int</span><i> message</i>, <span class="type">int</span><i> intParam</i>, <span class="type">void</span> *<i> ptrParam</i>)<tt> [virtual]</tt></h3>
+<p>This function can be called to place a message for thread on its queue. A message consists of three values:</p>
+<ul>
+<li><i>message</i>. This is a code that identifies the message. See <a href="syntrothread.html">SyntroThread</a>.h for examples.</li>
+<li><i>intParam</i>. This is an integer parameter that is passed with the message.</li>
+<li><i>ptrParam</i>. This is a pointer parameter that is passed with the message.</li>
+</ul>
+<p>Control is returned to the caller immediately as this function just queues the message for later processing by the thread.</p>
+<!-- @@@postThreadMessage -->
+<!-- $$$processMessage[overload1]$$$processMessageSyntroThreadMsg* -->
+<h3 class="fn"><a name="processMessage"></a><span class="type">bool</span> SyntroThread::<span class="name">processMessage</span>(<span class="type">SyntroThreadMsg</span> *<i> msg</i>)<tt> [virtual protected]</tt></h3>
+<p>processMessage is called when there is a message to be processed on the threads message queue. <i>msg</i> contains the message. This function should be overridden in order to process the messages. The function should return true if the messages was processed by the function and no further processing should be performed on this message, false if not.</p>
+<!-- @@@processMessage -->
+<!-- $$$resumeThread[overload1]$$$resumeThread -->
+<h3 class="fn"><a name="resumeThread"></a><span class="type">void</span> SyntroThread::<span class="name">resumeThread</span>()<tt> [virtual]</tt></h3>
+<p>Calling the constructor for <a href="syntrothread.html">SyntroThread</a> doesnt actually start the thread running to allow for the caller to perform any necessary initialization. resumeThread() should be called when everything is ready for the thread to initialize and run. resumeThread() calls <a href="syntrothread.html#initThread">initThread</a>() to get the thread started.</p>
+<!-- @@@resumeThread -->
+<!-- $$$running[overload1]$$$running -->
+<h3 class="fn"><a name="running"></a><span class="type">void</span> SyntroThread::<span class="name">running</span>()<tt> [signal]</tt></h3>
+<!-- @@@running -->
+<!-- $$$thread[overload1]$$$thread -->
+<h3 class="fn"><a name="thread"></a><span class="type">InternalThread</span> * SyntroThread::<span class="name">thread</span>()</h3>
+<!-- @@@thread -->
+</div>
+      </div>
+    </div>
+    </div> 
+    <div class="ft">
+      <span></span>
+    </div>
+  </div> 
+  <div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2014 Scott Ellis and Richard Barnett     <br />
+    <p>
+      The documentation provided herein is licensed under the terms of the
+      <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation
+      License version 1.3</a> as published by the Free Software Foundation.</p>
+    <br />
+  </div>
+
+  <script src="scripts/functions.js" type="text/javascript"></script>
+</body>
+</html>

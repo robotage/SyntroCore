@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- Endpoint.cpp -->
+  <title>Endpoint Class | SyntroCore 1.0</title>
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <script src="scripts/jquery.js" type="text/javascript"></script>
+  <script src="scripts/functions.js" type="text/javascript"></script>
+  <link rel="stylesheet" type="text/css" href="style/superfish.css" />
+  <link rel="stylesheet" type="text/css" href="style/narrow.css" />
+  <!--[if IE]>
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie6.css">
+<![endif]-->
+<!--[if IE 7]>
+<link rel="stylesheet" type="text/css" href="style/style_ie7.css">
+<![endif]-->
+<!--[if IE 8]>
+<link rel="stylesheet" type="text/css" href="style/style_ie8.css">
+<![endif]-->
+
+<script src="scripts/superfish.js" type="text/javascript"></script>
+<script src="scripts/narrow.js" type="text/javascript"></script>
+
+</head>
+<body class="" onload="CheckEmptyAndLoadList();">
+ <div class="header" id="qtdocheader">
+    <div class="content"> 
+    <div id="nav-logo">
+      <a href="index.html">Home</a></div>
+    <a href="index.html" class="qtref"><span>SyntroCore Reference Documentation</span></a>
+    <div id="narrowsearch"></div>
+    <div id="nav-topright">
+      <ul>
+        <li class="nav-topright-dev"><a href="http://richards-tech.com">DEV</a></li>
+        <li class="nav-topright-doc nav-topright-doc-active"><a href="http://richards-tech.com">
+          DOC</a></li>
+        <li class="nav-topright-blog"><a href="http://syntroworld.wordpress.com">BLOG</a></li>
+      </ul>
+    </div>
+    <div id="shortCut">
+      <ul>
+        <li class="shortCut-topleft-inactive"><span><a href="index.html">SyntroNet Version RT1.0.0</a></span></li>
+        </a></li>
+      </ul>
+     </div>
+   </div>
+  </div>
+  <div class="wrapper">
+    <div class="hd">
+      <span></span>
+    </div>
+    <div class="bd group">
+      <div class="sidebar">
+      </div>
+      <div class="wrap">
+        <div class="toolbar">
+          <div class="breadcrumb toolblock">
+            <ul>
+              <li class="first"><a href="index.html">Home</a></li>
+              <!--  Breadcrumbs go here -->
+<li>Endpoint</li>
+<li id="buildversion">
+</li>
+            </ul>
+          </div>
+          <div class="toolbuttons toolblock">
+            <ul>
+              <li id="smallA" class="t_button">A</li>
+              <li id="medA" class="t_button active">A</li>
+              <li id="bigA" class="t_button">A</li>
+              <li id="print" class="t_button"><a href="javascript:this.print();">
+                <span>Print</span></a></li>
+            </ul>
+        </div>
+        </div>
+        <div class="content mainContent">
+<div class="toc">
+<h3><a name="toc">Contents</a></h3>
+<ul>
+<li class="level1"><a href="#public-functions">Public Functions</a></li>
+<li class="level1"><a href="#protected-functions">Protected Functions</a></li>
+<li class="level1"><a href="#details">Detailed Description</a></li>
+</ul>
+</div>
+<h1 class="title">Endpoint Class</h1>
+<!-- $$$Endpoint-brief -->
+<p>Endpoint is the main interface between app clients and Syntro. <a href="#details">More...</a></p>
+<!-- @@@Endpoint -->
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> Header:</td><td class="memItemRight bottomAlign"> </b><tt><span class="preprocessor">#include &lt;Endpoint&gt;</span>
+</tt></td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <a href="syntrothread.html">SyntroThread</a>.</td></tr></table><ul>
+<li><a href="endpoint-members.html">List of all members, including inherited members</a></li>
+</ul>
+<a name="public-functions"></a>
+<h2>Public Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#Endpoint">Endpoint</a></b>(qint64<i> backgroundInterval</i>, const char *<i> compType</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#dtor.Endpoint">~Endpoint</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#getLinkState">getLinkState</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#requestDirectory">requestDirectory</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#setHeartbeatTimers">setHeartbeatTimers</a></b>(int<i> interval</i>, int<i> timeout</i>)</td></tr>
+</table>
+<ul>
+<li class="fn">5 public functions inherited from <a href="syntrothread.html#public-functions">SyntroThread</a></li>
+</ul>
+<a name="protected-functions"></a>
+<h2>Protected Functions</h2>
+<table class="alignedsummary">
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSAddEP">CFSAddEP</a></b>(int<i> serviceEP</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSCancelQuery">CFSCancelQuery</a></b>(int<i> serviceEP</i>, int<i> handle</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSCancelQueryResponse">CFSCancelQueryResponse</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> responseCode</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSClose">CFSClose</a></b>(int<i> serviceEP</i>, int<i> handle</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSCloseResponse">CFSCloseResponse</a></b>(int<i> serviceEP</i>, unsigned int<i> responseCode</i>, int<i> handle</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSDeleteEP">CFSDeleteEP</a></b>(int<i> serviceEP</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSDir">CFSDir</a></b>(int<i> serviceEP</i>, int<i> cfsDirParam</i> = SYNTROCFS_DIR_PARAM_LIST_ALL)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSDirResponse">CFSDirResponse</a></b>(int<i> serviceEP</i>, unsigned int<i> responseCode</i>, QStringList<i> filePaths</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSFetchQuery">CFSFetchQuery</a></b>(int<i> serviceEP</i>, int<i> handle</i>, int<i> maxRows</i>, int<i> resultType</i> = SYNTROCFS_QUERY_RESULT_TYPE_ROW_DATA)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSFetchQueryResponse">CFSFetchQueryResponse</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> responseCode</i>, int<i> firstRow</i>, int<i> lastRow</i>, int<i> param1</i>, int<i> param2</i>, int<i> length</i>, unsigned char *<i> data</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSKeepAliveTimeout">CFSKeepAliveTimeout</a></b>(int<i> serviceEP</i>, int<i> handle</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSOpenDB">CFSOpenDB</a></b>(int<i> serviceEP</i>, QString<i> databaseName</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSOpenRawFile">CFSOpenRawFile</a></b>(int<i> serviceEP</i>, QString<i> filePath</i>, int<i> blockSize</i> = 128)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSOpenResponse">CFSOpenResponse</a></b>(int<i> remoteServiceEP</i>, unsigned int<i> responseCode</i>, int<i> handle</i>, unsigned int<i> fileLength</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSOpenStructuredFile">CFSOpenStructuredFile</a></b>(int<i> serviceEP</i>, QString<i> filePath</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSQuery">CFSQuery</a></b>(int<i> serviceEP</i>, int<i> handle</i>, QString<i> sql</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSQueryResponse">CFSQueryResponse</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> responseCode</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSReadAtIndex">CFSReadAtIndex</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> index</i>, int<i> blockCount</i> = 1)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSReadAtIndexResponse">CFSReadAtIndexResponse</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> index</i>, unsigned int<i> responseCode</i>, unsigned char *<i> fileData</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSWriteAtIndex">CFSWriteAtIndex</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> index</i>, unsigned char *<i> fileData</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#CFSWriteAtIndexResponse">CFSWriteAtIndexResponse</a></b>(int<i> serviceEP</i>, int<i> handle</i>, unsigned int<i> index</i>, unsigned int<i> responseCode</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientBackground">appClientBackground</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientClosed">appClientClosed</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientConnected">appClientConnected</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientExit">appClientExit</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientHeartbeat">appClientHeartbeat</a></b>(SYNTRO_HEARTBEAT *<i> heartbeat</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientInit">appClientInit</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientProcessThreadMessage">appClientProcessThreadMessage</a></b>(SyntroThreadMsg *<i> msg</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientReceiveDirectory">appClientReceiveDirectory</a></b>(QStringList<i> directory</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientReceiveE2E">appClientReceiveE2E</a></b>(int<i> servicePort</i>, SYNTRO_EHEAD *<i> message</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientReceiveMulticast">appClientReceiveMulticast</a></b>(int<i> servicePort</i>, SYNTRO_EHEAD *<i> message</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> virtual void </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#appClientReceiveMulticastAck">appClientReceiveMulticastAck</a></b>(int<i> servicePort</i>, SYNTRO_EHEAD *<i> message</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientAddService">clientAddService</a></b>(QString<i> servicePath</i>, int<i> serviceType</i>, bool<i> local</i>, bool<i> enabled</i> = true)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_EHEAD * </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientBuildLocalE2EMessage">clientBuildLocalE2EMessage</a></b>(int<i> clientPort</i>, SYNTRO_UID *<i> destUID</i>, int<i> destPort</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_EHEAD * </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientBuildMessage">clientBuildMessage</a></b>(int<i> servicePort</i>, int<i> length</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientClearToSend">clientClearToSend</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientDisableService">clientDisableService</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientEnableService">clientEnableService</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> qint64 </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetLastSendTime">clientGetLastSendTime</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetRemoteServiceState">clientGetRemoteServiceState</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> SYNTRO_UID * </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetRemoteServiceUID">clientGetRemoteServiceUID</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetServiceData">clientGetServiceData</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> void * </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetServiceDataPointer">clientGetServiceDataPointer</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetServiceDestPort">clientGetServiceDestPort</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> QString </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetServicePath">clientGetServicePath</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> int </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientGetServiceType">clientGetServiceType</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientIsConnected">clientIsConnected</a></b>()</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientIsServiceActive">clientIsServiceActive</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientIsServiceEnabled">clientIsServiceEnabled</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientIsServiceLocal">clientIsServiceLocal</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientLoadServices">clientLoadServices</a></b>(bool<i> enabled</i>, int *<i> serviceCount</i>, int *<i> serviceStart</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientRemoveService">clientRemoveService</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientSendMessage">clientSendMessage</a></b>(int<i> servicePort</i>, SYNTRO_EHEAD *<i> message</i>, int<i> length</i>, int<i> priority</i> = SYNTROLINK_LOWPRI)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientSendMulticastAck">clientSendMulticastAck</a></b>(int<i> servicePort</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientSetServiceData">clientSetServiceData</a></b>(int<i> servicePort</i>, int<i> value</i>)</td></tr>
+<tr><td class="memItemLeft rightAlign topAlign"> bool </td><td class="memItemRight bottomAlign"><b><a href="endpoint.html#clientSetServiceDataPointer">clientSetServiceDataPointer</a></b>(int<i> servicePort</i>, void *<i> value</i>)</td></tr>
+</table>
+<ul>
+<li class="fn">4 protected functions inherited from <a href="syntrothread.html#protected-functions">SyntroThread</a></li>
+</ul>
+<h3>Additional Inherited Members</h3>
+<ul>
+<li class="fn">1 public slot inherited from <a href="syntrothread.html#public-slots">SyntroThread</a></li>
+<li class="fn">3 signals inherited from <a href="syntrothread.html#signals">SyntroThread</a></li>
+</ul>
+<a name="details"></a>
+<!-- $$$Endpoint-description -->
+<div class="descr">
+<h2>Detailed Description</h2>
+<p>Endpoint is the main interface between app clients and Syntro.</p>
+<p>The Endpoint class implements many of the functions that a Syntro app client will need to interact with the cloud. In most cases, a Syntro app has a client class that inherits Endpoint. Endpoint itself inherits <a href="syntrothread.html">SyntroThread</a>. The normal sequence for use involves constructing a new client class that inherits, performing any initialization that might be require on that object and then calling the <a href="syntrothread.html#resumeThread">resumeThread</a>() function on the object.</p>
+</div>
+<!-- @@@Endpoint -->
+<div class="func">
+<h2>Member Function Documentation</h2>
+<!-- $$$Endpoint[overload1]$$$Endpointqint64constchar* -->
+<h3 class="fn"><a name="Endpoint"></a>Endpoint::<span class="name">Endpoint</span>(<span class="type">qint64</span><i> backgroundInterval</i>, const <span class="type">char</span> *<i> compType</i>)</h3>
+<p>Constructs a new Endpoint. Typically this would be called with parent set to this. <i>parent</i> is the parent object, <i>settings</i> is a pointer to the QSettings object that was generated when the components settings file was read in. <i>backgroundInterval</i> is the period in millisconds between executions of Endpoints background functions. Typical values for this are between 10 and 100. Setting value too high may limit the total achievable data throughput on the underlying SyntroLink. In addition, setting the value beyond 1000 is not recommended a it may cause internal timers and timeouts to be processed incorrectly.</p>
+<!-- @@@Endpoint -->
+<!-- $$$~Endpoint[overload1]$$$~Endpoint -->
+<h3 class="fn"><a name="dtor.Endpoint"></a>Endpoint::<span class="name">~Endpoint</span>()<tt> [virtual]</tt></h3>
+<!-- @@@~Endpoint -->
+<!-- $$$CFSAddEP[overload1]$$$CFSAddEPint -->
+<h3 class="fn"><a name="CFSAddEP"></a><span class="type">void</span> Endpoint::<span class="name">CFSAddEP</span>(<span class="type">int</span><i> serviceEP</i>)<tt> [protected]</tt></h3>
+<p>Allows a service port (returned from clientAddService or clientLoadServices) <i>serviceEP</i> to be designated as a Cloud File System endpoint. Endpoint will trap message received from the SyntroLink destined for a CFS endpoint and generate app client callbacks in response instead of passing up the raw messages.</p>
+<!-- @@@CFSAddEP -->
+<!-- $$$CFSCancelQuery[overload1]$$$CFSCancelQueryintint -->
+<h3 class="fn"><a name="CFSCancelQuery"></a><span class="type">bool</span> Endpoint::<span class="name">CFSCancelQuery</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>)<tt> [protected]</tt></h3>
+<!-- @@@CFSCancelQuery -->
+<!-- $$$CFSCancelQueryResponse[overload1]$$$CFSCancelQueryResponseintintunsignedint -->
+<h3 class="fn"><a name="CFSCancelQueryResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSCancelQueryResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>)<tt> [virtual protected]</tt></h3>
+<!-- @@@CFSCancelQueryResponse -->
+<!-- $$$CFSClose[overload1]$$$CFSCloseintint -->
+<h3 class="fn"><a name="CFSClose"></a><span class="type">bool</span> Endpoint::<span class="name">CFSClose</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>)<tt> [protected]</tt></h3>
+<p>CFSClose can be called to close an open file with handle <i>handle</i> on service port <i>serviceEP</i>. The function will return true if the close was issued and there will be a subsequent call to CFSClose() Response when a response is received or a timeout occurs. Returning false means that an error occurred, the close was not sent and there will not be a call to <a href="endpoint.html#CFSCloseResponse">CFSCloseResponse</a>(). The client app in this case should assume that the file is closed.</p>
+<!-- @@@CFSClose -->
+<!-- $$$CFSCloseResponse[overload1]$$$CFSCloseResponseintunsignedintint -->
+<h3 class="fn"><a name="CFSCloseResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSCloseResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>, <span class="type">int</span><i> handle</i>)<tt> [virtual protected]</tt></h3>
+<p>CFSCloseResponse is a client app override that is called when either a response to a file close is received or the request is timed out on service port <i>serviceEP</i>. <i>responseCode</i> indicates the result. SYNTROCFS_SUCCESS indicates that the request was successful and that the file associated with handle handle is closed. Any other value indicates an error (see SyntroCFSDefs.h for details). Regardless of the response code, the client app should assume that the file is closed. The handle is no longer valid in all cases.</p>
+<!-- @@@CFSCloseResponse -->
+<!-- $$$CFSDeleteEP[overload1]$$$CFSDeleteEPint -->
+<h3 class="fn"><a name="CFSDeleteEP"></a><span class="type">void</span> Endpoint::<span class="name">CFSDeleteEP</span>(<span class="type">int</span><i> serviceEP</i>)<tt> [protected]</tt></h3>
+<p>Removes the CFS designation from the service port <i>serviceEP</i>.</p>
+<!-- @@@CFSDeleteEP -->
+<!-- $$$CFSDir[overload1]$$$CFSDirintint -->
+<h3 class="fn"><a name="CFSDir"></a><span class="type">bool</span> Endpoint::<span class="name">CFSDir</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> cfsDirParam</i> = SYNTROCFS_DIR_PARAM_LIST_ALL)<tt> [protected]</tt></h3>
+<p>CFSDir can be called by the client app to request a directory of files from the SyntroCFS associated with service port <i>serviceEP</i>. Only one request can be outstanding at a time. The function returns true if the request was sent, false if an error occurred and indicates that the request was not sent. If the function returns true, a call to CFSDirResponse will occur, either when a response is received or a timeout occurs.</p>
+<!-- @@@CFSDir -->
+<!-- $$$CFSDirResponse[overload1]$$$CFSDirResponseintunsignedintQStringList -->
+<h3 class="fn"><a name="CFSDirResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSDirResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>, <span class="type">QStringList</span><i> filePaths</i>)<tt> [virtual protected]</tt></h3>
+<p>CFSDirResponse is a client app override that is called when either a response is received to a directory request or else a timeout has occurred on service port serviceEP. responseCode indicates the result. SYNTROCFS_SUCCESS indicates that the request was successful and that filePaths contains a list of file paths from the SyntroCFS. Any other value indicates an error (see SyntroCFSDefs.h for details) and filePaths will be NULL.</p>
+<!-- @@@CFSDirResponse -->
+<!-- $$$CFSFetchQuery[overload1]$$$CFSFetchQueryintintintint -->
+<h3 class="fn"><a name="CFSFetchQuery"></a><span class="type">bool</span> Endpoint::<span class="name">CFSFetchQuery</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">int</span><i> maxRows</i>, <span class="type">int</span><i> resultType</i> = SYNTROCFS_QUERY_RESULT_TYPE_ROW_DATA)<tt> [protected]</tt></h3>
+<!-- @@@CFSFetchQuery -->
+<!-- $$$CFSFetchQueryResponse[overload1]$$$CFSFetchQueryResponseintintunsignedintintintintintintunsignedchar* -->
+<h3 class="fn"><a name="CFSFetchQueryResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSFetchQueryResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>, <span class="type">int</span><i> firstRow</i>, <span class="type">int</span><i> lastRow</i>, <span class="type">int</span><i> param1</i>, <span class="type">int</span><i> param2</i>, <span class="type">int</span><i> length</i>, <span class="type">unsigned</span> <span class="type">char</span> *<i> data</i>)<tt> [virtual protected]</tt></h3>
+<!-- @@@CFSFetchQueryResponse -->
+<!-- $$$CFSKeepAliveTimeout[overload1]$$$CFSKeepAliveTimeoutintint -->
+<h3 class="fn"><a name="CFSKeepAliveTimeout"></a><span class="type">void</span> Endpoint::<span class="name">CFSKeepAliveTimeout</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>)<tt> [virtual protected]</tt></h3>
+<p>This client app override is called is the CFS keep alive system has detected that the connection to the CFS server for the active file associated with handle on service port <i>serviceEP</i> has broken. The client app should handle this situation as though the file has been closed and the <i>handle</i> no longer valid.</p>
+<!-- @@@CFSKeepAliveTimeout -->
+<!-- $$$CFSOpenDB[overload1]$$$CFSOpenDBintQString -->
+<h3 class="fn"><a name="CFSOpenDB"></a><span class="type">int</span> Endpoint::<span class="name">CFSOpenDB</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">QString</span><i> databaseName</i>)<tt> [protected]</tt></h3>
+<p>CFSOpen is called to open a file identified by filePath on a SyntroCFS server connection referenced by <i>serviceEP</i>.</p>
+<p>If the <i>filePath</i> has an extension of .srf then the transfer mode is set to structured and the data transfer is in blocks as they were originally received by the Syntro store. The <i>param</i> argument is not used.</p>
+<p>If the extension is &quot;.db&quot;, the transfer is database mode and query results are returned in result sets of varying length. The <i>param</i> argument specifies the table type.</p>
+<p>For any other extension, the transfer mode is assumed to be raw file mode and the data is transferred in unstructured blocks. The <i>param</i> is the size of the blocks returned and can be from 1 to 65535.</p>
+<p>The functions return a local handle that should be used for all future references to this open file if the open request was sent to the server, it will return -1 if not. If the request was sent, a call to <a href="endpoint.html#CFSOpenResponse">CFSOpenResponse</a>() will be made when either a response is received or the request it timed out.</p>
+<!-- @@@CFSOpenDB -->
+<!-- $$$CFSOpenRawFile[overload1]$$$CFSOpenRawFileintQStringint -->
+<h3 class="fn"><a name="CFSOpenRawFile"></a><span class="type">int</span> Endpoint::<span class="name">CFSOpenRawFile</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">QString</span><i> filePath</i>, <span class="type">int</span><i> blockSize</i> = 128)<tt> [protected]</tt></h3>
+<!-- @@@CFSOpenRawFile -->
+<!-- $$$CFSOpenResponse[overload1]$$$CFSOpenResponseintunsignedintintunsignedint -->
+<h3 class="fn"><a name="CFSOpenResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSOpenResponse</span>(<span class="type">int</span><i> remoteServiceEP</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> fileLength</i>)<tt> [virtual protected]</tt></h3>
+<p>CFSOpenResponse is a client app override that is called when either a response to a file open is received or the request is timed out on service port <i>remoteServiceEP</i>. <i>responseCode</i> indicates the result. SYNTROCFS_SUCCESS indicates that the request was successful and that the file associated with handle handle is now open and the total length of the file in records (structured) or blocks (raw) is fileLength. Any other value indicates an error (see SyntroCFSDefs.h for details).</p>
+<!-- @@@CFSOpenResponse -->
+<!-- $$$CFSOpenStructuredFile[overload1]$$$CFSOpenStructuredFileintQString -->
+<h3 class="fn"><a name="CFSOpenStructuredFile"></a><span class="type">int</span> Endpoint::<span class="name">CFSOpenStructuredFile</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">QString</span><i> filePath</i>)<tt> [protected]</tt></h3>
+<!-- @@@CFSOpenStructuredFile -->
+<!-- $$$CFSQuery[overload1]$$$CFSQueryintintQString -->
+<h3 class="fn"><a name="CFSQuery"></a><span class="type">bool</span> Endpoint::<span class="name">CFSQuery</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">QString</span><i> sql</i>)<tt> [protected]</tt></h3>
+<!-- @@@CFSQuery -->
+<!-- $$$CFSQueryResponse[overload1]$$$CFSQueryResponseintintunsignedint -->
+<h3 class="fn"><a name="CFSQueryResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSQueryResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>)<tt> [virtual protected]</tt></h3>
+<!-- @@@CFSQueryResponse -->
+<!-- $$$CFSReadAtIndex[overload1]$$$CFSReadAtIndexintintunsignedintint -->
+<h3 class="fn"><a name="CFSReadAtIndex"></a><span class="type">bool</span> Endpoint::<span class="name">CFSReadAtIndex</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> index</i>, <span class="type">int</span><i> blockCount</i> = 1)<tt> [protected]</tt></h3>
+<p>CFSReadAtIndex can be called to read a record or block(s) starting at record or block <i>index</i> from the file associated with <i>handle</i> on service port <i>serviceEP</i>. <i>blockCount</i> can be used in raw mode to read more than one block. blockCount can be between 1 and 65535. This parameter is ignored in structured mode.</p>
+<p>The function returns true if the read request was issued and a call to <a href="endpoint.html#CFSReadAtIndexResponse">CFSReadAtIndexResponse</a>() will be made or false if the read was not issued and there will not be a subsequent call to <a href="endpoint.html#CFSReadAtIndexResponse">CFSReadAtIndexResponse</a>().</p>
+<!-- @@@CFSReadAtIndex -->
+<!-- $$$CFSReadAtIndexResponse[overload1]$$$CFSReadAtIndexResponseintintunsignedintunsignedintunsignedchar*int -->
+<h3 class="fn"><a name="CFSReadAtIndexResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSReadAtIndexResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> index</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>, <span class="type">unsigned</span> <span class="type">char</span> *<i> fileData</i>, <span class="type">int</span><i> length</i>)<tt> [virtual protected]</tt></h3>
+<p>This client app override is called when a read response for the file associated with handle on service port <i>serviceEP</i> has been received or else has timed out. <i>responseCode</i> indicates the result. SYNTROCFS_SUCCESS indicates that the request was successful and fileData contains the file data with length bytes. Any other value means that the read request failed.</p>
+<p>If the request was successful, the memory associated with fileData must be freed at some point by the client app.</p>
+<!-- @@@CFSReadAtIndexResponse -->
+<!-- $$$CFSWriteAtIndex[overload1]$$$CFSWriteAtIndexintintunsignedintunsignedchar*int -->
+<h3 class="fn"><a name="CFSWriteAtIndex"></a><span class="type">bool</span> Endpoint::<span class="name">CFSWriteAtIndex</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> index</i>, <span class="type">unsigned</span> <span class="type">char</span> *<i> fileData</i>, <span class="type">int</span><i> length</i>)<tt> [protected]</tt></h3>
+<p>CFSWriteAtIndex can be called to write a record or block(s) starting at record or block <i>index</i> to the file associated with <i>handle</i> on service port <i>serviceEP</i>. <i>blockCount</i> can be used in raw mode to write more than one block. blockCount can be between 1 and 65535. This parameter is ignored in structured mode.</p>
+<p>The function returns true if the write request was issued and a call to <a href="endpoint.html#CFSWriteAtIndexResponse">CFSWriteAtIndexResponse</a>() will be made or false if the write was not issued and there will not be a subsequent call to <a href="endpoint.html#CFSWriteAtIndexResponse">CFSWriteAtIndexResponse</a>().</p>
+<!-- @@@CFSWriteAtIndex -->
+<!-- $$$CFSWriteAtIndexResponse[overload1]$$$CFSWriteAtIndexResponseintintunsignedintunsignedint -->
+<h3 class="fn"><a name="CFSWriteAtIndexResponse"></a><span class="type">void</span> Endpoint::<span class="name">CFSWriteAtIndexResponse</span>(<span class="type">int</span><i> serviceEP</i>, <span class="type">int</span><i> handle</i>, <span class="type">unsigned</span> <span class="type">int</span><i> index</i>, <span class="type">unsigned</span> <span class="type">int</span><i> responseCode</i>)<tt> [virtual protected]</tt></h3>
+<p>This client app override is called when a write response for the file associated with handle on service port <i>serviceEP</i> has been received or else has timed out. <i>responseCode</i> indicates the result. SYNTROCFS_SUCCESS indicates that the request was successful. Any other value means that the write request failed.</p>
+<!-- @@@CFSWriteAtIndexResponse -->
+<!-- $$$appClientBackground[overload1]$$$appClientBackground -->
+<h3 class="fn"><a name="appClientBackground"></a><span class="type">void</span> Endpoint::<span class="name">appClientBackground</span>()<tt> [virtual protected]</tt></h3>
+<p>appClientBackground is called every time Endpoints background timer expires. The interval is set using the Endpoint constructor. The app client can use this call for any background processing that it needs to do. Since this is in the Endpoint thread, there should not be any lengthy processing in this function. Instead, this function should initiate a worker thread to perform the lengthy processing and pick up the results at a later point rather than blocking.</p>
+<!-- @@@appClientBackground -->
+<!-- $$$appClientClosed[overload1]$$$appClientClosed -->
+<h3 class="fn"><a name="appClientClosed"></a><span class="type">void</span> Endpoint::<span class="name">appClientClosed</span>()<tt> [virtual protected]</tt></h3>
+<p>This function is called when the SyntroLink is no longer available for data transfer.</p>
+<!-- @@@appClientClosed -->
+<!-- $$$appClientConnected[overload1]$$$appClientConnected -->
+<h3 class="fn"><a name="appClientConnected"></a><span class="type">void</span> Endpoint::<span class="name">appClientConnected</span>()<tt> [virtual protected]</tt></h3>
+<p>This function is called when the SyntroLink has been established and is ready for data transfer.</p>
+<!-- @@@appClientConnected -->
+<!-- $$$appClientExit[overload1]$$$appClientExit -->
+<h3 class="fn"><a name="appClientExit"></a><span class="type">void</span> Endpoint::<span class="name">appClientExit</span>()<tt> [virtual protected]</tt></h3>
+<p>appClientExit() is called during the Ednpoint destructor execution and the client can use this to perform any last minute clean up before termination.</p>
+<!-- @@@appClientExit -->
+<!-- $$$appClientHeartbeat[overload1]$$$appClientHeartbeatSYNTRO_HEARTBEAT*int -->
+<h3 class="fn"><a name="appClientHeartbeat"></a><span class="type">void</span> Endpoint::<span class="name">appClientHeartbeat</span>(<span class="type">SYNTRO_HEARTBEAT</span> *<i> heartbeat</i>, <span class="type">int</span><i> length</i>)<tt> [virtual protected]</tt></h3>
+<p>This function is called whenever a heartbeat is received on its SyntroLink. The heartbeat message itself is in heartbeat, length is the number of bytes in the message. heartbeat must be freed in the overriding function.</p>
+<!-- @@@appClientHeartbeat -->
+<!-- $$$appClientInit[overload1]$$$appClientInit -->
+<h3 class="fn"><a name="appClientInit"></a><span class="type">void</span> Endpoint::<span class="name">appClientInit</span>()<tt> [virtual protected]</tt></h3>
+<p>appClientInit is called just before Endpoint starts its timer and exits its initialization phase. The client app can use this call for final initialization as Endpoint has prepared everything else for execution.</p>
+<!-- @@@appClientInit -->
+<!-- $$$appClientProcessThreadMessage[overload1]$$$appClientProcessThreadMessageSyntroThreadMsg* -->
+<h3 class="fn"><a name="appClientProcessThreadMessage"></a><span class="type">bool</span> Endpoint::<span class="name">appClientProcessThreadMessage</span>(<span class="type">SyntroThreadMsg</span> *<i> msg</i>)<tt> [virtual protected]</tt></h3>
+<p>Overriding this function allows the app client to process a message (<i>msg</i>) posted to Endpoints thread. See the <a href="syntrothread.html">SyntroThread</a> documentation for more details.</p>
+<!-- @@@appClientProcessThreadMessage -->
+<!-- $$$appClientReceiveDirectory[overload1]$$$appClientReceiveDirectoryQStringList -->
+<h3 class="fn"><a name="appClientReceiveDirectory"></a><span class="type">void</span> Endpoint::<span class="name">appClientReceiveDirectory</span>(<span class="type">QStringList</span><i> directory</i>)<tt> [virtual protected]</tt></h3>
+<p>Overrriding this functions allows the app client to process the current directory for the Syntro cloud. message must be freed in the overriding function.</p>
+<!-- @@@appClientReceiveDirectory -->
+<!-- $$$appClientReceiveE2E[overload1]$$$appClientReceiveE2EintSYNTRO_EHEAD*int -->
+<h3 class="fn"><a name="appClientReceiveE2E"></a><span class="type">void</span> Endpoint::<span class="name">appClientReceiveE2E</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">SYNTRO_EHEAD</span> *<i> message</i>, <span class="type">int</span><i> length</i>)<tt> [virtual protected]</tt></h3>
+<p>Overriding this function allows the app client to process data messages received on E2E services. servicePort contains the port number of the service to which this belongs, the data is in message and the length parameter is the number of bytes after the SYNTRO_EHEAD in the message. message must be freed in the overriding function.</p>
+<!-- @@@appClientReceiveE2E -->
+<!-- $$$appClientReceiveMulticast[overload1]$$$appClientReceiveMulticastintSYNTRO_EHEAD*int -->
+<h3 class="fn"><a name="appClientReceiveMulticast"></a><span class="type">void</span> Endpoint::<span class="name">appClientReceiveMulticast</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">SYNTRO_EHEAD</span> *<i> message</i>, <span class="type">int</span><i> length</i>)<tt> [virtual protected]</tt></h3>
+<p>Overriding this function allows the app client to process data messages received on multicast services. servicePort contains the port number of the service to which this belongs, the data is in message and the length parameter is the number of bytes after the SYNTRO_EHEAD in the message. message must be freed in the overriding function.</p>
+<!-- @@@appClientReceiveMulticast -->
+<!-- $$$appClientReceiveMulticastAck[overload1]$$$appClientReceiveMulticastAckintSYNTRO_EHEAD*int -->
+<h3 class="fn"><a name="appClientReceiveMulticastAck"></a><span class="type">void</span> Endpoint::<span class="name">appClientReceiveMulticastAck</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">SYNTRO_EHEAD</span> *<i> message</i>, <span class="type">int</span><i> length</i>)<tt> [virtual protected]</tt></h3>
+<p>Overriding this function allows the app client to process acknowledge messages received on multicast services. servicePort contains the port number of the service to which this belongs, the data is in message and the length parameter is the number of bytes after the SYNTRO_EHEAD in the message. message must be freed in the overriding function.</p>
+<!-- @@@appClientReceiveMulticastAck -->
+<!-- $$$clientAddService[overload1]$$$clientAddServiceQStringintboolbool -->
+<h3 class="fn"><a name="clientAddService"></a><span class="type">int</span> Endpoint::<span class="name">clientAddService</span>(<span class="type">QString</span><i> servicePath</i>, <span class="type">int</span><i> serviceType</i>, <span class="type">bool</span><i> local</i>, <span class="type">bool</span><i> enabled</i> = true)<tt> [protected]</tt></h3>
+<p>This function adds a service to Endpoints service list. <i>servicePath</i> is the service name for the service. <i>serviceType</i> is one of SYNTRO_PARAMS_SERVICE_TYPE_MULTICAST for a multicast service or SYNTRO_PARAMS_SERVICE_TYPE_E2E for an E2E service. If <i>local</i> is true then Endpoint will process the service as a multicast data producer or E2E service provider and add the servicePath to the Syntro cloud directory. Otherwise, Endpoint will process the service as a data consumer or service user and try to look up the servicePath in the Syntro cloud directory and subscribe to the service if it is multicast. If <i>enabled</i> is true then Endpoint will regard the service as active perform look ups etc as necessary. If it is false, Endpoint will not process the service apart from adding it to the service table. The service can be enabled later by calling <a href="endpoint.html#clientEnableService">clientEnableService</a>().</p>
+<p>The function returns -1 if there is an error. Otherwise, the return value is the servicePort that should be used for further interactions with this service.</p>
+<!-- @@@clientAddService -->
+<!-- $$$clientBuildLocalE2EMessage[overload1]$$$clientBuildLocalE2EMessageintSYNTRO_UID*intint -->
+<h3 class="fn"><a name="clientBuildLocalE2EMessage"></a><span class="type">SYNTRO_EHEAD</span> * Endpoint::<span class="name">clientBuildLocalE2EMessage</span>(<span class="type">int</span><i> clientPort</i>, <span class="type">SYNTRO_UID</span> *<i> destUID</i>, <span class="type">int</span><i> destPort</i>, <span class="type">int</span><i> length</i>)<tt> [protected]</tt></h3>
+<p>This functions builds a malloced SYNTRO_EHEAD structure with <i>length</i> bytes of data space, filled in with header data for the service referenced by servicePort and returns a pointer to it. The caller is responsible for making sure that it is freed at some point. The function will return NULL if there is any problem with the call (which can include the service not being available for message transmission). This is appropriate for local E2E services.</p>
+<!-- @@@clientBuildLocalE2EMessage -->
+<!-- $$$clientBuildMessage[overload1]$$$clientBuildMessageintint -->
+<h3 class="fn"><a name="clientBuildMessage"></a><span class="type">SYNTRO_EHEAD</span> * Endpoint::<span class="name">clientBuildMessage</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">int</span><i> length</i>)<tt> [protected]</tt></h3>
+<p>This functions builds a malloced SYNTRO_EHEAD structure with <i>length</i> bytes of data space, filled in with header data for the service referenced by <i>servicePort</i> and returns a pointer to it. The caller is responsible for making sure that it is freed at some point. The function will return NULL if there is any problem with the call (which can include the service not being available for message transmission). This is appropriate for multicast and remote E2E services.</p>
+<!-- @@@clientBuildMessage -->
+<!-- $$$clientClearToSend[overload1]$$$clientClearToSendint -->
+<h3 class="fn"><a name="clientClearToSend"></a><span class="type">bool</span> Endpoint::<span class="name">clientClearToSend</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns true if the service referenced by <i>servicePort</i> is a local multicast service and the acknowledge window is open. This function should always be called before sending multicast data on a local service.</p>
+<!-- @@@clientClearToSend -->
+<!-- $$$clientDisableService[overload1]$$$clientDisableServiceint -->
+<h3 class="fn"><a name="clientDisableService"></a><span class="type">bool</span> Endpoint::<span class="name">clientDisableService</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>This function disables a previous enabled service referenced by <i>servicePort</i>. The functions returns false if any error occurred.</p>
+<!-- @@@clientDisableService -->
+<!-- $$$clientEnableService[overload1]$$$clientEnableServiceint -->
+<h3 class="fn"><a name="clientEnableService"></a><span class="type">bool</span> Endpoint::<span class="name">clientEnableService</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>This function enables a previous disabled service referenced by <i>servicePort</i>. The functions returns false if any error occurred.</p>
+<!-- @@@clientEnableService -->
+<!-- $$$clientGetLastSendTime[overload1]$$$clientGetLastSendTimeint -->
+<h3 class="fn"><a name="clientGetLastSendTime"></a><span class="type">qint64</span> Endpoint::<span class="name">clientGetLastSendTime</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns the last time at which a multicast message was sent on the service associated with <i>servicePort</i>. Returns -1 if servicePort is not in an appropriate state.</p>
+<!-- @@@clientGetLastSendTime -->
+<!-- $$$clientGetRemoteServiceState[overload1]$$$clientGetRemoteServiceStateint -->
+<h3 class="fn"><a name="clientGetRemoteServiceState"></a><span class="type">int</span> Endpoint::<span class="name">clientGetRemoteServiceState</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>This function returns the actual state of Endpoints state machine for the remote service <i>servicePort</i>. Possible values are:</p>
+<ul>
+<li>SYNTRO_REMOTE_SERVICE_STATE_NOTINUSE. The state for a table entry thats not in use.</li>
+<li>SYNTRO_REMOTE_SERVICE_STATE_LOOK. Requests a lookup on the service path.</li>
+<li>SYNTRO_REMOTE_SERVICE_STATE_LOOKING. A lookup request is outstanding.</li>
+<li>SYNTRO_REMOTE_SERVICE_STATE_REGISTERED. Successfully registered or looked up.</li>
+<li>SYNTRO_REMOTE_SERVICE_STATE_REMOVE. Requests removal of a remote service registration.</li>
+<li>SYNTRO_REMOTE_SERVICE_STATE_REMOVING. A remove request is in progress.</li>
+</ul>
+<!-- @@@clientGetRemoteServiceState -->
+<!-- $$$clientGetRemoteServiceUID[overload1]$$$clientGetRemoteServiceUIDint -->
+<h3 class="fn"><a name="clientGetRemoteServiceUID"></a><span class="type">SYNTRO_UID</span> * Endpoint::<span class="name">clientGetRemoteServiceUID</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns a pointer to the UID of a remote service which is in state SYNTRO_REMOTE_SERVICE_STATE_REGISTERED. If the state of the port referenced by <i>servicePort</i> is in a different state, NULL will be returned.</p>
+<!-- @@@clientGetRemoteServiceUID -->
+<!-- $$$clientGetServiceData[overload1]$$$clientGetServiceDataint -->
+<h3 class="fn"><a name="clientGetServiceData"></a><span class="type">int</span> Endpoint::<span class="name">clientGetServiceData</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Retrieves and returns the <i>servicePort</i>'s value set by a previous <a href="endpoint.html#clientSetServiceData">clientSetServiceData</a>() call.</p>
+<!-- @@@clientGetServiceData -->
+<!-- $$$clientGetServiceDataPointer[overload1]$$$clientGetServiceDataPointerint -->
+<h3 class="fn"><a name="clientGetServiceDataPointer"></a><span class="type">void</span> * Endpoint::<span class="name">clientGetServiceDataPointer</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Retrieves the <i>servicePort</i>'s pointer value set by a previous <a href="endpoint.html#clientSetServiceDataPointer">clientSetServiceDataPointer</a>() call.</p>
+<!-- @@@clientGetServiceDataPointer -->
+<!-- $$$clientGetServiceDestPort[overload1]$$$clientGetServiceDestPortint -->
+<h3 class="fn"><a name="clientGetServiceDestPort"></a><span class="type">int</span> Endpoint::<span class="name">clientGetServiceDestPort</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns destination port to be used for a message on a service which is in state SYNTRO_REMOTE_SERVICE_STATE_REGISTERED. If the state of the port referenced by <i>servicePort</i> is in a different state, -1 will be returned.</p>
+<!-- @@@clientGetServiceDestPort -->
+<!-- $$$clientGetServicePath[overload1]$$$clientGetServicePathint -->
+<h3 class="fn"><a name="clientGetServicePath"></a><span class="type">QString</span> Endpoint::<span class="name">clientGetServicePath</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Maps <i>servicePort</i> into a service path. Returns an empty string if there was an error.</p>
+<!-- @@@clientGetServicePath -->
+<!-- $$$clientGetServiceType[overload1]$$$clientGetServiceTypeint -->
+<h3 class="fn"><a name="clientGetServiceType"></a><span class="type">int</span> Endpoint::<span class="name">clientGetServiceType</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns the service type of <i>servicePort</i>. Possible values are:</p>
+<ul>
+<li>SERVICETYPE_MULTICAST</li>
+<li>SERVICETYPE_E2E</li>
+<li>-1 (error)</li>
+</ul>
+<!-- @@@clientGetServiceType -->
+<!-- $$$clientIsConnected[overload1]$$$clientIsConnected -->
+<h3 class="fn"><a name="clientIsConnected"></a><span class="type">bool</span> Endpoint::<span class="name">clientIsConnected</span>()<tt> [protected]</tt></h3>
+<p>Returns true if Endpoints SyntroLink is connected and operating normally.</p>
+<!-- @@@clientIsConnected -->
+<!-- $$$clientIsServiceActive[overload1]$$$clientIsServiceActiveint -->
+<h3 class="fn"><a name="clientIsServiceActive"></a><span class="type">bool</span> Endpoint::<span class="name">clientIsServiceActive</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns true if the service referenced by <i>servicePort</i> is active, else false if not enabled or error. The meaning of active depends on whether the service is local or remote. For a local multicast service, active means that there is at least subscriber to the service. For a remote multicast or E2E service, active means that the look up for the specified service path has succeeded.</p>
+<!-- @@@clientIsServiceActive -->
+<!-- $$$clientIsServiceEnabled[overload1]$$$clientIsServiceEnabledint -->
+<h3 class="fn"><a name="clientIsServiceEnabled"></a><span class="type">bool</span> Endpoint::<span class="name">clientIsServiceEnabled</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns true if the service referenced by <i>servicePort</i> is enabled, else false if not enabled or error.</p>
+<!-- @@@clientIsServiceEnabled -->
+<!-- $$$clientIsServiceLocal[overload1]$$$clientIsServiceLocalint -->
+<h3 class="fn"><a name="clientIsServiceLocal"></a><span class="type">bool</span> Endpoint::<span class="name">clientIsServiceLocal</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>Returns true if the service referenced by <i>servicePort</i> is a local service, else false if not remote or error.</p>
+<!-- @@@clientIsServiceLocal -->
+<!-- $$$clientLoadServices[overload1]$$$clientLoadServicesboolint*int* -->
+<h3 class="fn"><a name="clientLoadServices"></a><span class="type">bool</span> Endpoint::<span class="name">clientLoadServices</span>(<span class="type">bool</span><i> enabled</i>, <span class="type">int</span> *<i> serviceCount</i>, <span class="type">int</span> *<i> serviceStart</i>)<tt> [protected]</tt></h3>
+<p>Loads services from the client settings area of the settings file. They will all be enabled or disabled on creation based on the <i>enabled</i> flag supplied. Returns true if it the services were processed correctly, false if there was an error, <i>serviceCount</i> is the number of services loaded, <i>serviceStart</i> is the service port of the first service loaded. Service ports are assigned consecutively.</p>
+<p>The client settings area is an array in the settings file. The array name is defined by SYNTRO_PARAMS_CLIENT_SERVICES in <a href="syntroutils.html">SyntroUtils</a>.h. Each service entry consists of three values as follows:</p>
+<ul>
+<li>SYNTRO_PARAMS_CLIENT_SERVICE_TYPE. This is the type of the service which can be SYNTRO_PARAMS_SERVICE_TYPE_MULTICAST or SYNTRO_PARAMS_SERVICE_TYPE_E2E.</li>
+<li>SYNTRO_PARAMS_CLIENT_SERVICE_LOCATION. This can be either SYNTRO_PARAMS_SERVICE_LOCATION_LOCAL or SYNTRO_PARAMS_SERVICE_LOCATION_REMOTE. If local, this means that the service is being provided by this component. If remote, it means that the component wishes to use a service provided by some other component.</li>
+<li>SYNTRO_PARAMS_CLIENT_SERVICE_NAME. This is the service name to be used for the service.</li>
+</ul>
+<!-- @@@clientLoadServices -->
+<!-- $$$clientRemoveService[overload1]$$$clientRemoveServiceint -->
+<h3 class="fn"><a name="clientRemoveService"></a><span class="type">bool</span> Endpoint::<span class="name">clientRemoveService</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>This function removes the service referenced by <i>servicePort</i> from Endpoints service table. The function returns false if any error occurred. servicePort is no longer valid for that service after the call.</p>
+<!-- @@@clientRemoveService -->
+<!-- $$$clientSendMessage[overload1]$$$clientSendMessageintSYNTRO_EHEAD*intint -->
+<h3 class="fn"><a name="clientSendMessage"></a><span class="type">bool</span> Endpoint::<span class="name">clientSendMessage</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">SYNTRO_EHEAD</span> *<i> message</i>, <span class="type">int</span><i> length</i>, <span class="type">int</span><i> priority</i> = SYNTROLINK_LOWPRI)<tt> [protected]</tt></h3>
+<p>clientSendMessage() is used to send a message with length total bytes after the SYNTRO_EHEAD header on an active service referenced by servicePort with priority priority. Valid priority levels in increasing level of importance are:</p>
+<ul>
+<li>SYNTROLINK_LOWPRI</li>
+<li>SYNTROLINK_MEDPRI</li>
+<li>SYNTROLINK_MEDHIGHPRI</li>
+<li>SYNTROLINK_HIGHPRI</li>
+</ul>
+<p>The function returns true if the message was sent successfully, false it it was not. In both cases freeing the memory originally malloced for message is handled by this function.</p>
+<!-- @@@clientSendMessage -->
+<!-- $$$clientSendMulticastAck[overload1]$$$clientSendMulticastAckint -->
+<h3 class="fn"><a name="clientSendMulticastAck"></a><span class="type">bool</span> Endpoint::<span class="name">clientSendMulticastAck</span>(<span class="type">int</span><i> servicePort</i>)<tt> [protected]</tt></h3>
+<p>sends a multicast acknowledge to the remote multicast service referenced by servicePort. The acknowledgement number will be the sequence number of the last message received on this service plus one (i.e&#x2e; it completely opens up the acknowledgement window again). The function returns true if successful, false if an error occurred.</p>
+<!-- @@@clientSendMulticastAck -->
+<!-- $$$clientSetServiceData[overload1]$$$clientSetServiceDataintint -->
+<h3 class="fn"><a name="clientSetServiceData"></a><span class="type">bool</span> Endpoint::<span class="name">clientSetServiceData</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">int</span><i> value</i>)<tt> [protected]</tt></h3>
+<p>This function allows an integer user data <i>value</i> to be added to the service entry indicated by <i>servicePort</i>.</p>
+<!-- @@@clientSetServiceData -->
+<!-- $$$clientSetServiceDataPointer[overload1]$$$clientSetServiceDataPointerintvoid* -->
+<h3 class="fn"><a name="clientSetServiceDataPointer"></a><span class="type">bool</span> Endpoint::<span class="name">clientSetServiceDataPointer</span>(<span class="type">int</span><i> servicePort</i>, <span class="type">void</span> *<i> value</i>)<tt> [protected]</tt></h3>
+<p>Saves a user data pointer <i>value</i> to be added to the service entry indicated by <i>servicePort</i>.</p>
+<!-- @@@clientSetServiceDataPointer -->
+<!-- $$$getLinkState[overload1]$$$getLinkState -->
+<h3 class="fn"><a name="getLinkState"></a><span class="type">QString</span> Endpoint::<span class="name">getLinkState</span>()</h3>
+<p>getLinkState() returns a displayable string that describes the current state of the SyntroLink. It is commonly displayed at the bottom left of components in GUI mode and in response to a status request in console mode.</p>
+<!-- @@@getLinkState -->
+<!-- $$$requestDirectory[overload1]$$$requestDirectory -->
+<h3 class="fn"><a name="requestDirectory"></a><span class="type">void</span> Endpoint::<span class="name">requestDirectory</span>()</h3>
+<p>Requests a directory from the connected SyntroControl. When the directory is received, <a href="endpoint.html#appClientReceiveDirectory">appClientReceiveDirectory</a>() will be called.</p>
+<!-- @@@requestDirectory -->
+<!-- $$$setHeartbeatTimers[overload1]$$$setHeartbeatTimersintint -->
+<h3 class="fn"><a name="setHeartbeatTimers"></a><span class="type">void</span> Endpoint::<span class="name">setHeartbeatTimers</span>(<span class="type">int</span><i> interval</i>, <span class="type">int</span><i> timeout</i>)</h3>
+<p>This function can be called after the Endpoint-dreived class has been created but before <a href="syntrothread.html#resumeThread">resumeThread</a>() has been called. It allows the heartbeat system rate to be controlled. <i>interval</i> is the interval between heartbeats in seconds. <i>timout</i> is the number of intervals without a heartbeat response being seen before the Syntro link is timed out.</p>
+<!-- @@@setHeartbeatTimers -->
+</div>
+      </div>
+    </div>
+    </div> 
+    <div class="ft">
+      <span></span>
+    </div>
+  </div> 
+  <div class="footer">
+    <p>
+      <acronym title="Copyright">&copy;</acronym> 2014 Scott Ellis and Richard Barnett     <br />
+    <p>
+      The documentation provided herein is licensed under the terms of the
+      <a href="http://www.gnu.org/licenses/fdl.html">GNU Free Documentation
+      License version 1.3</a> as published by the Free Software Foundation.</p>
+    <br />
+  </div>
+
+  <script src="scripts/functions.js" type="text/javascript"></script>
+</body>
+</html>
