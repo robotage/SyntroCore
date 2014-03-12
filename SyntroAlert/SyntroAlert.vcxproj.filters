@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -84,11 +84,29 @@
     <ClCompile Include="MessageTypeDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MessageTypeDlg.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MessageTypeDlg.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\StaticDebug\moc_MessageTypeDlg.cpp">
       <Filter>Generated Files\StaticDebug</Filter>
     </ClCompile>
+    <ClCompile Include="GeneratedFiles\StaticRelease\moc_MessageTypeDlg.cpp">
+      <Filter>Generated Files\StaticRelease</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_ViewFieldsDlg.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_ViewFieldsDlg.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="GeneratedFiles\StaticDebug\moc_ViewFieldsDlg.cpp">
       <Filter>Generated Files\StaticDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\StaticRelease\moc_ViewFieldsDlg.cpp">
+      <Filter>Generated Files\StaticRelease</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -104,8 +122,10 @@
     <CustomBuild Include="syntroalert.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="MessageTypeDlg.h">
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MessageTypeDlg.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
+    </ClInclude>
   </ItemGroup>
 </Project>
