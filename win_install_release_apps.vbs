@@ -27,7 +27,7 @@ Sub CopyApps()
 
 	dstFolder = SyntroDir + "/bin/"
 
-	srcFile = SyntroDir + "/SyntroCore/SyntroCFS/Release/SyntroCFS.exe"
+	srcFile = SyntroDir + "/SyntroCore/SyntroDB/Release/SyntroDB.exe"
 	If Not fso.FileExists(srcFile) Then
 		MsgBox srcFile + " not found", vbOkOnly, "Copy Error"
 		Exit Sub
@@ -43,23 +43,7 @@ Sub CopyApps()
 	    fso.CopyFile srcFile, dstFolder
 	End If
 
-	srcFile = SyntroDir + "/SyntroCore/SyntroExec/Release/SyntroExec.exe"
-	If Not fso.FileExists(srcFile) Then
-		MsgBox srcFile + " not found", vbOkOnly, "Copy Error"
-		Exit Sub
-	Else
-	    fso.CopyFile srcFile, dstFolder
-	End If
-
-	srcFile = SyntroDir + "/SyntroCore/SyntroLog/Release/SyntroLog.exe"
-	If Not fso.FileExists(srcFile) Then
-		MsgBox srcFile + " not found", vbOkOnly, "Copy Error"
-		Exit Sub
-	Else
-	    fso.CopyFile srcFile, dstFolder
-	End If
-
-	srcFile = SyntroDir + "/SyntroCore/SyntroStore/Release/SyntroStore.exe"
+	srcFile = SyntroDir + "/SyntroCore/SyntroExec/Release/SyntroAlert.exe"
 	If Not fso.FileExists(srcFile) Then
 		MsgBox srcFile + " not found", vbOkOnly, "Copy Error"
 		Exit Sub
