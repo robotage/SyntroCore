@@ -37,7 +37,7 @@ unix:QMAKE_CXXFLAGS_RELEASE -= -g
 
 unix {
 	macx {
-		target.path = /usr/local/bin
+		target.path = /Applications
 	}
 	else {
 		target.path = /usr/bin
