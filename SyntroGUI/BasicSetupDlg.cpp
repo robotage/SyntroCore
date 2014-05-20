@@ -100,9 +100,11 @@ goChanged:
 	else
 		settings->setValue(SYNTRO_RUNTIME_ADAPTER, m_adaptor->currentText());
 
+    settings->sync();
+
 	msgBox.setText("The component must be restarted for these changes to take effect");
 	msgBox.setIcon(QMessageBox::Warning);
-	msgBox.exec();
+    msgBox.exec();
 
 	delete settings;
 

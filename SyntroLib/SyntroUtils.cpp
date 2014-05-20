@@ -658,6 +658,7 @@ void SyntroUtils::loadStandardSettings(const char *appType, QStringList arglist)
 	if (!settings->contains(SYNTRO_PARAMS_LOG_HBTIMEOUT))
 		settings->setValue(SYNTRO_PARAMS_LOG_HBTIMEOUT, SYNTRO_LOG_HEARTBEAT_TIMEOUT);
 
+    settings->sync();
 	delete settings;
 }
 
@@ -997,7 +998,7 @@ bool SyntroUtils::avmuxHeaderValidate(SYNTRO_RECORD_AVMUX *avmuxHead, int length
 	videoLength = SyntroUtils::convertUC4ToInt(avmuxHead->videoSize);
 	audioLength = SyntroUtils::convertUC4ToInt(avmuxHead->audioSize);
 
-	if (length != (sizeof(SYNTRO_RECORD_AVMUX) + muxLength + videoLength + audioLength))
+    if (length != (sizeof(SYNTRO_RECORD_AVMUX) + muxLength + videoLength + audioLength))
 		return false;
 
 	if (muxPtr != NULL)

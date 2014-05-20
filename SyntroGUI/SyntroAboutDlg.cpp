@@ -51,23 +51,16 @@ void SyntroAbout::layoutWindow()
 	verticalLayout->setSpacing(6);
 	
 	m_appType = new QLabel(this);
-	QFont font;
-	font.setPointSize(12);
-	m_appType->setFont(font);
 	m_appType->setAlignment(Qt::AlignCenter);
 
 	verticalLayout->addWidget(m_appType);
 
 	QLabel *label_1 = new QLabel("A SyntroNet Application", this);
-	QFont font1;
-	font1.setPointSize(10);
-	label_1->setFont(font1);
 	label_1->setAlignment(Qt::AlignCenter);
 
 	verticalLayout->addWidget(label_1);
 
-	QLabel *label_2 = new QLabel("Copyright (c) 2014 Scott Ellis and Richard Barnett", this);
-	label_2->setFont(font1);
+    QLabel *label_2 = new QLabel("Copyright (c) 2014 richards-tech", this);
 	label_2->setAlignment(Qt::AlignCenter);
 
 	verticalLayout->addWidget(label_2);
