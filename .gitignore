@@ -1,7 +1,10 @@
 Makefile*
 *.tgz
 *.bz2
-.qmake.cache
+.qmake.*
+*.dll
+*.crt
+*.key
 Debug/
 Release/
 Output/

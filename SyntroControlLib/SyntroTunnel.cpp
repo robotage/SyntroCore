@@ -70,11 +70,20 @@ bool SyntroTunnel::connect()
 	if (m_comp->sock != NULL){
 		delete m_comp->sock;
 		delete m_comp->syntroLink;
+        m_comp->sock = NULL;
+        m_comp->syntroLink = NULL;
 	}
 
 	//	Create a new socket
 
-	m_comp->sock = new SyntroSocket(m_server);
+    int id = m_server->getNextConnectionID();
+    if (id == -1) 
+        return false;
+
+    if (m_comp->tunnelStatic)
+        m_comp->sock = new SyntroSocket(m_server, id, m_comp->tunnelEncrypt);
+    else
+        m_comp->sock = new SyntroSocket(m_server, id, m_server->m_encryptLocal);
 	m_server->setComponentSocket(m_comp, m_comp->sock);
 	m_comp->syntroLink = new SyntroLink(m_logTag);
 	returnValue = m_comp->sock->sockCreate(0, SOCK_STREAM);
@@ -90,9 +99,11 @@ bool SyntroTunnel::connect()
 		return false;
 
 	if (!m_comp->tunnelStatic)
-		returnValue = m_comp->sock->sockConnect(m_helloEntry.IPAddr, m_server->m_socketNumber);
+		returnValue = m_comp->sock->sockConnect(m_helloEntry.IPAddr, 
+        m_comp->tunnelEncrypt ? m_server->m_socketNumberEncrypt : m_server->m_socketNumber);
 	else
-		returnValue = m_comp->sock->sockConnect(qPrintable(m_comp->tunnelStaticPrimary), m_server->m_staticTunnelSocketNumber);
+		returnValue = m_comp->sock->sockConnect(qPrintable(m_comp->tunnelStaticPrimary), 
+        m_comp->tunnelEncrypt ? m_server->m_staticTunnelSocketNumberEncrypt : m_server->m_staticTunnelSocketNumber);
 	m_connectInProgress = true;
 	m_comp->lastHeartbeatReceived = SyntroClock();
 	return	true;

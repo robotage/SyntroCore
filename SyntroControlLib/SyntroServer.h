@@ -35,8 +35,17 @@
 #define	SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET		"LocalSocket"	// port number for local links
 #define	SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET	"StaticTunnelSocket"	// port number for static tunnels
 
+#define	SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT		"LocalSocketEncrypt"	// port number for encrypted local links
+#define	SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT	"StaticTunnelSocketEncrypt"	// port number for encrypted static tunnels
+
+#define SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL              "EncryptLocal"  // true if local connections using SSL
+#define SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER "EncryptStaticTunnelServer" // true if static tunnel server connections using SSL
+
 #define SYNTROCONTROL_PARAMS_HBINTERVAL					"controlHeartbeatInterval"	// interval between heartbeats in seconds
 #define SYNTROCONTROL_PARAMS_HBTIMEOUT					"controlHeartbeatTimeout"	// heartbeat intervals before timeout
+
+#define SYNTROCONTROL_PARAMS_VALID_TUNNEL_SOURCES   "ValidTunnelSources"    // UIDs of valid tunnel sources
+#define SYNTROCONTROL_PARAMS_VALID_TUNNEL_UID       "ValidTunnelUID"        // the array entry
 
 //	Static tunnel settings defs
 
@@ -44,6 +53,7 @@
 #define	SYNTROCONTROL_PARAMS_STATIC_NAME			"StaticName"	// name of the tunnel
 #define	SYNTROCONTROL_PARAMS_STATIC_DESTIP_PRIMARY	"StaticPrimary"	// the primary destination IP address
 #define	SYNTROCONTROL_PARAMS_STATIC_DESTIP_BACKUP	"StaticBackup"	// the backup IP port
+#define SYNTROCONTROL_PARAMS_STATIC_ENCRYPT         "StaticEncrypt" // true if use SSL
 
 //		SyntroControl SyntroServer Thread Messages
 
@@ -58,6 +68,7 @@
 #define	SYNTROSERVER_STATS_INTERVAL			(2 * SYNTRO_CLOCKS_PER_SEC)
 
 class SyntroTunnel;
+
 
 enum ConnState
 {
@@ -75,6 +86,7 @@ typedef struct
 	bool tunnelSource;										// if the source end of a SyntroControl tunnel
 	bool tunnelDest;										// if it is the dest end of a tunnel
 	bool tunnelStatic;										// if it is a static tunnel
+    bool tunnelEncrypt;                                     // is use SSL for tunnel
 	QString tunnelStaticName;								// name of the static tunnel
 	QString tunnelStaticPrimary;							// static tunnel primary IP address
 	QString tunnelStaticBackup;								// static tunnel backup IP address
@@ -87,7 +99,7 @@ typedef struct
 	int compPort;											// the component's port
 	SyntroSocket *sock;										// socket for SyntroLink connection
 	int connectionID;										// its connection ID
-
+  
 	// Heartbeat system vars
 
 	SYNTRO_HEARTBEAT heartbeat;								// a copy of the heartbeat message
@@ -126,6 +138,8 @@ class SYNTROCONTROLLIB_EXPORT SyntroServer : public SyntroThread
 {
 	Q_OBJECT
 
+    friend class SyntroTunnel;
+
 public:
 	SyntroServer();						
 	virtual ~SyntroServer();
@@ -134,7 +148,10 @@ public:
 
 	int m_socketNumber;										// the socket to listen on - defaults to SYNTRO_ACTIVE_SOCKET_LOCAL
 	int m_staticTunnelSocketNumber;							// the socket for static tunnels - defaults to SYNTRO_ACTIVE_SOCKET_TUNNEL
-	bool m_netLogEnabled;									// true if network logging enabled
+	int m_socketNumberEncrypt;								// the SSL socket to listen on - defaults to SYNTRO_ACTIVE_SOCKET_LOCAL_ENCRYPT
+	int m_staticTunnelSocketNumberEncrypt;					// the SSL socket for static tunnels - defaults to SYNTRO_ACTIVE_SOCKET_TUNNEL_ENCRYPT
+    
+    bool m_netLogEnabled;									// true if network logging enabled
 	QString m_appName;										// this SyntroControl's app name
 
 	SYNTRO_UID m_myUID;										// my UID - used for local service processing
@@ -173,8 +190,10 @@ protected:
 	void finishThread();
 	void timerEvent(QTimerEvent *event);
 	void loadStaticTunnels(QSettings *settings);
+    void loadValidTunnelSources(QSettings *settings);
 	bool processMessage(SyntroThreadMsg* msg);
 	bool openSockets();										// open the sockets SyntroControl needs
+    int getNextConnectionID();                              // gets the next free connection ID
 
 	bool syConnected(SS_COMPONENT *syntroComponent);
 	bool syAccept(bool staticTunnel);
@@ -220,7 +239,9 @@ protected:
 	void processReceivedDataDemux(SS_COMPONENT *syntroComponent, int cmd, int length, SYNTRO_MESSAGE *message);
 	qint64 m_heartbeatSendInterval;							// the initial interval for apps and the send interval for tunnel sources
 	int m_heartbeatTimeoutCount;							// number of heartbeat periods before SyntroLink timed out
+
 	int m_connectionIDMap[SYNTRO_MAX_CONNECTIONIDS];		// maps connection IDs to component index
+    int m_nextConnectionID;									// used to allocate unique IDs to socket connections
 
 	qint64 m_E2EIn;											// total multicast in count
 	unsigned m_E2EInRate;									// rate accumulator
@@ -228,7 +249,12 @@ protected:
 	unsigned m_E2EOutRate;									// rate accumulator
 	qint64 m_counterStart;									// rate counter start time
 
+    bool m_encryptLocal;                                    // if use SSL for local connections
+    bool m_encryptStaticTunnelServer;                       // if use SSL for tunnel service
+
 	qint64 m_lastOpenSocketsTime;							// last time open sockets failed
+
+    QList<SYNTRO_UID> m_validTunnelSources;                 // list of valid UIDs that can be tunnel sources
 
 private:
 

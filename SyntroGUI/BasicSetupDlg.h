@@ -57,6 +57,7 @@ private:
 	QCheckBox *m_revert;
 	QCheckBox *m_localControl;
 	QLineEdit *m_localControlPri;
+    QCheckBox *m_encrypt;
 };
 
 #endif // BASICSETUPDLG_H

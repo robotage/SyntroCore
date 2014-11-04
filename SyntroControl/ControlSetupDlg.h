@@ -28,6 +28,7 @@
 #include <qmessagebox.h>
 #include <qformlayout.h>
 #include <qcombobox.h>
+#include <qcheckbox.h>
 
 class ControlSetupDlg : public QDialog
 {
@@ -50,6 +51,14 @@ private:
 	ServiceNameValidator *m_validator;
 	QLineEdit *m_priority;
 	QComboBox *m_adaptor;
+    QLineEdit *m_localSocket;
+    QLineEdit *m_encryptLocalSocket;
+    QLineEdit *m_staticTunnelSocket;
+    QLineEdit *m_encryptStaticTunnelSocket;
+    QCheckBox *m_encryptLocal;
+    QCheckBox *m_encryptStaticTunnelServer;
+    QLineEdit *m_heartbeatInterval;
+    QLineEdit *m_heartbeatRetries;
 };
 
 #endif // CONSTROLSETUPDLG_H

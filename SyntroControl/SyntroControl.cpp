@@ -36,21 +36,22 @@ SyntroControl::SyntroControl()
 	connect(ui.actionAbout, SIGNAL(triggered()), this, SLOT(onAbout()));
 	connect(ui.actionBasicSetup, SIGNAL(triggered()), this, SLOT(onBasicSetup()));
 
-    ui.m_table->setColumnCount(9);
+    ui.m_table->setColumnCount(10);
 
     ui.m_table->setColumnWidth(0, 120);
     ui.m_table->setColumnWidth(1, 120);
      ui.m_table->setColumnWidth(2, 120);
     ui.m_table->setColumnWidth(3, 100);
 	ui.m_table->setColumnWidth(4, 80);
-	ui.m_table->setColumnWidth(5, 100);
+	ui.m_table->setColumnWidth(5, 120);
 	ui.m_table->setColumnWidth(6, 100);
 	ui.m_table->setColumnWidth(7, 100);
 	ui.m_table->setColumnWidth(8, 100);
+	ui.m_table->setColumnWidth(9, 100);
 
     ui.m_table->setHorizontalHeaderLabels(
                 QStringList() << tr("App name") << tr("Component type")
-                << tr("Unique ID") << tr("IP Address") << tr("HB interval")
+                << tr("Unique ID") << tr("IP Address") << tr("HB interval") << tr("Link type")
 				<< tr("RX bytes") << tr("TX bytes") << tr("RX rate") << tr("TX rate"));
 
 
@@ -60,7 +61,7 @@ SyntroControl::SyntroControl()
 		ui.m_table->insertRow(row);
 		ui.m_table->setRowHeight(row, DEFAULT_ROW_HEIGHT);
 
-		for (int col = 0; col < 9; col++) {
+		for (int col = 0; col < 10; col++) {
 			QTableWidgetItem *item = new QTableWidgetItem();
 			item->setTextAlignment(Qt::AlignLeft | Qt::AlignBottom);
 			item->setFlags(Qt::ItemIsEnabled);
@@ -188,16 +189,17 @@ void SyntroControl::UpdateSyntroStatusBox(int index, QStringList list)
 	ui.m_table->item(index, 2)->setText(list.at(2));
 	ui.m_table->item(index, 3)->setText(list.at(3));
 	ui.m_table->item(index, 4)->setText(list.at(4));
+	ui.m_table->item(index, 5)->setText(list.at(5));
 }
 
 void SyntroControl::UpdateSyntroDataBox(int index, QStringList list)
 {
 	if (index >= ui.m_table->rowCount())
 		return;
-	ui.m_table->item(index, 5)->setText(list.at(0));
-	ui.m_table->item(index, 6)->setText(list.at(1));
-	ui.m_table->item(index, 7)->setText(list.at(2));
-	ui.m_table->item(index, 8)->setText(list.at(3));
+	ui.m_table->item(index, 6)->setText(list.at(0));
+	ui.m_table->item(index, 7)->setText(list.at(1));
+	ui.m_table->item(index, 8)->setText(list.at(2));
+	ui.m_table->item(index, 9)->setText(list.at(3));
 }
 
 void SyntroControl::saveWindowState()

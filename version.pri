@@ -14,4 +14,4 @@
 #  along with SyntroNet.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-!win32:VERSION = 1.0.0
+!win32:VERSION = 1.0.1

@@ -3,10 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntroControl", "SyntroControl.vcxproj", "{31915F3F-EAF6-46E6-AAA1-B133B921FE25}"
 	ProjectSection(ProjectDependencies) = postProject
+		{929B7B14-269C-4D46-AF4D-80E27D33F25C} = {929B7B14-269C-4D46-AF4D-80E27D33F25C}
 		{0C7F9BE3-3648-4B6C-B1FB-C8B54629862B} = {0C7F9BE3-3648-4B6C-B1FB-C8B54629862B}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntroControlLib", "..\SyntroControlLib\SyntroControlLib.vcxproj", "{0C7F9BE3-3648-4B6C-B1FB-C8B54629862B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{929B7B14-269C-4D46-AF4D-80E27D33F25C} = {929B7B14-269C-4D46-AF4D-80E27D33F25C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SyntroLib", "..\SyntroLib\SyntroLib.vcxproj", "{929B7B14-269C-4D46-AF4D-80E27D33F25C}"
 EndProject

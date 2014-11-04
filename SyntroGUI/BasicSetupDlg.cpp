@@ -73,6 +73,10 @@ void BasicSetupDlg::onOk()
 		if (m_adaptor->currentText() != settings->value(SYNTRO_RUNTIME_ADAPTER).toString())
 			goto goChanged;
 	}
+
+    if ((m_encrypt->checkState() == Qt::Checked) != settings->value(SYNTRO_PARAMS_ENCRYPT_LINK).toBool())
+		goto goChanged;
+
 	
 	delete settings;
 
@@ -94,6 +98,7 @@ goChanged:
 	settings->setValue(SYNTRO_PARAMS_CONTROLREVERT, m_revert->checkState() == Qt::Checked);
 	settings->setValue(SYNTRO_PARAMS_LOCALCONTROL, m_localControl->checkState() == Qt::Checked);
 	settings->setValue(SYNTRO_PARAMS_LOCALCONTROL_PRI, m_localControlPri->text());
+	settings->setValue(SYNTRO_PARAMS_ENCRYPT_LINK, m_encrypt->checkState() == Qt::Checked);
 
 	if (m_adaptor->currentText() == "<any>")
 		settings->setValue(SYNTRO_RUNTIME_ADAPTER, "");
@@ -172,6 +177,11 @@ void BasicSetupDlg::layoutWindow()
 		m_adaptor->setCurrentIndex(findIndex);
 	else
 		m_adaptor->setCurrentIndex(0);
+
+   	m_encrypt = new QCheckBox();
+	formLayout->addRow(tr("Encrypt link:"), m_encrypt);
+	if (settings->value(SYNTRO_PARAMS_ENCRYPT_LINK).toBool())
+		m_encrypt->setCheckState(Qt::Checked);
 
 	centralLayout->addLayout(formLayout);
 

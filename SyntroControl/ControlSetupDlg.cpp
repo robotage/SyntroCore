@@ -54,7 +54,22 @@ void ControlSetupDlg::onOk()
 			changed = true;
 	}
 
-	if (changed) {
+    settings->beginGroup(SYNTROCONTROL_PARAMS_GROUP);
+
+	changed |= m_localSocket->text() != settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET).toString();
+	changed |= m_encryptLocalSocket->text() != settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT).toString();
+	changed |= m_staticTunnelSocket->text() != settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET).toString();
+	changed |= m_encryptStaticTunnelSocket->text() != settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT).toString();
+
+    changed |= (m_encryptLocal->checkState() == Qt::Checked) != settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL).toBool();
+    changed |= (m_encryptStaticTunnelServer->checkState() == Qt::Checked) != settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER).toBool();
+    
+    changed |= m_heartbeatInterval->text() != settings->value(SYNTROCONTROL_PARAMS_HBINTERVAL).toString();
+	changed |= m_heartbeatRetries->text() != settings->value(SYNTROCONTROL_PARAMS_HBTIMEOUT).toString();
+
+    settings->endGroup();
+
+    if (changed) {
 		msgBox.setText("The component must be restarted for these changes to take effect");
 		msgBox.exec();
 
@@ -65,7 +80,22 @@ void ControlSetupDlg::onOk()
 			settings->setValue(SYNTRO_RUNTIME_ADAPTER, "");
 		else
 			settings->setValue(SYNTRO_RUNTIME_ADAPTER, m_adaptor->currentText());
-		
+
+        settings->beginGroup(SYNTROCONTROL_PARAMS_GROUP);
+
+	    settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET, m_localSocket->text());
+	    settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT, m_encryptLocalSocket->text());
+	    settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET, m_staticTunnelSocket->text());
+	    settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT, m_encryptStaticTunnelSocket->text());
+
+	    settings->setValue(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL, m_encryptLocal->checkState() == Qt::Checked);
+	    settings->setValue(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER, m_encryptStaticTunnelServer->checkState() == Qt::Checked);
+
+     	settings->setValue(SYNTROCONTROL_PARAMS_HBINTERVAL, m_heartbeatInterval->text());
+    	settings->setValue(SYNTROCONTROL_PARAMS_HBTIMEOUT, m_heartbeatRetries->text());
+
+        settings->endGroup();
+
 		delete settings;
 		accept();
 	}
@@ -77,7 +107,9 @@ void ControlSetupDlg::onOk()
 
 void ControlSetupDlg::layoutWindow()
 {
-	QSettings *settings = SyntroUtils::getSettings();
+    QFrame *line;
+
+  	QSettings *settings = SyntroUtils::getSettings();
 
 	QVBoxLayout *centralLayout = new QVBoxLayout(this);
 	
@@ -107,6 +139,71 @@ void ControlSetupDlg::layoutWindow()
 		m_adaptor->setCurrentIndex(findIndex);
 	else
 		m_adaptor->setCurrentIndex(0);
+
+   	settings->beginGroup(SYNTROCONTROL_PARAMS_GROUP);
+
+    //  local link config
+
+  	line = new QFrame(this);
+	line->setFrameShape(QFrame::HLine);
+	line->setFrameShadow(QFrame::Sunken);
+    line->setMinimumHeight(20);
+    formLayout->addRow(line);
+    formLayout->addRow(new QLabel("Local link configuration:"));
+
+    m_localSocket = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET).toString());
+	formLayout->addRow(tr("Local link socket (encryption off):" ), m_localSocket);
+	m_localSocket->setValidator(new QIntValidator(0, 65535));
+
+    m_encryptLocal = new QCheckBox();
+	if (settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL).toBool())
+	    m_encryptLocal->setCheckState(Qt::Checked);
+	formLayout->addRow(tr("Encrypt local links:"), m_encryptLocal);
+
+	m_encryptLocalSocket = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT).toString());
+	formLayout->addRow(tr("Local link socket (encryption on):" ), m_encryptLocalSocket);
+	m_encryptLocalSocket->setValidator(new QIntValidator(0, 65535));
+
+    //  static tunnel server config
+
+  	line = new QFrame(this);
+	line->setFrameShape(QFrame::HLine);
+	line->setFrameShadow(QFrame::Sunken);
+    line->setMinimumHeight(20);
+    formLayout->addRow(line);
+    formLayout->addRow(new QLabel("Static tunnel server configuration:"));
+
+    m_staticTunnelSocket = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET).toString());
+	formLayout->addRow(tr("Static tunnel service socket (encryption off):" ), m_staticTunnelSocket);
+	m_staticTunnelSocket->setValidator(new QIntValidator(0, 65535));
+
+    m_encryptStaticTunnelServer = new QCheckBox();
+	if (settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER).toBool())
+	    m_encryptStaticTunnelServer->setCheckState(Qt::Checked);
+	formLayout->addRow(tr("Encrypt static tunnel server:"), m_encryptStaticTunnelServer);
+
+	m_encryptStaticTunnelSocket = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT).toString());
+	formLayout->addRow(tr("Static tunnel service socket (encryption on):" ), m_encryptStaticTunnelSocket);
+	m_encryptStaticTunnelSocket->setValidator(new QIntValidator(0, 65535));
+
+    //  heartbeat config
+
+  	line = new QFrame(this);
+	line->setFrameShape(QFrame::HLine);
+	line->setFrameShadow(QFrame::Sunken);
+    line->setMinimumHeight(20);
+    formLayout->addRow(line);
+    formLayout->addRow(new QLabel("Heartbeat configuration:"));
+
+    m_heartbeatInterval = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_HBINTERVAL).toString());
+	formLayout->addRow(tr("Heartbeat interval (1 - 120 seconds):" ), m_heartbeatInterval);
+	m_heartbeatInterval->setValidator(new QIntValidator(1, 120));
+
+    m_heartbeatRetries = new QLineEdit(settings->value(SYNTROCONTROL_PARAMS_HBTIMEOUT).toString());
+	formLayout->addRow(tr("Heartbeat intervals before timeout (1 - 10):" ), m_heartbeatRetries);
+	m_heartbeatRetries->setValidator(new QIntValidator(1, 10));
+
+    settings->endGroup();
 
 	centralLayout->addLayout(formLayout);
 	

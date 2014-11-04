@@ -35,18 +35,45 @@ SyntroServer::SyntroServer() : SyntroThread(QString("SyntroServer"), COMPTYPE_CO
 	settings->beginGroup(SYNTROCONTROL_PARAMS_GROUP);
 
 	if (!settings->contains(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET))
-		settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET, SYNTRO_SOCKET_LOCAL);			
+		settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET, SYNTRO_SOCKET_LOCAL);	
+
 	if (!settings->contains(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET))
 		settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET, SYNTRO_PRIMARY_SOCKET_STATICTUNNEL);
+
+	if (!settings->contains(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT))
+		settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT, SYNTRO_SOCKET_LOCAL_ENCRYPT);	
+
+	if (!settings->contains(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT))
+		settings->setValue(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT, SYNTRO_PRIMARY_SOCKET_STATICTUNNEL_ENCRYPT);
 
 	if (!settings->contains(SYNTROCONTROL_PARAMS_HBINTERVAL))
 		settings->setValue(SYNTROCONTROL_PARAMS_HBINTERVAL, SYNTRO_HEARTBEAT_INTERVAL);		
 
 	if (!settings->contains(SYNTROCONTROL_PARAMS_HBTIMEOUT))
-		settings->setValue(SYNTROCONTROL_PARAMS_HBTIMEOUT, SYNTRO_HEARTBEAT_TIMEOUT);		
+		settings->setValue(SYNTROCONTROL_PARAMS_HBTIMEOUT, SYNTRO_HEARTBEAT_TIMEOUT);	
 
+    if (!settings->contains(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL))
+        settings->setValue(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL, false);
+ 
+    if (!settings->contains(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER))
+        settings->setValue(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER, false);
+ 
 	m_socketNumber = settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET).toInt();
 	m_staticTunnelSocketNumber = settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET).toInt();
+
+	m_socketNumberEncrypt = settings->value(SYNTROCONTROL_PARAMS_LISTEN_LOCAL_SOCKET_ENCRYPT).toInt();
+	m_staticTunnelSocketNumberEncrypt = settings->value(SYNTROCONTROL_PARAMS_LISTEN_STATICTUNNEL_SOCKET_ENCRYPT).toInt();
+
+    m_encryptLocal = settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_LOCAL).toBool();
+    m_encryptStaticTunnelServer = settings->value(SYNTROCONTROL_PARAMS_ENCRYPT_STATICTUNNEL_SERVER).toBool();
+
+    if (m_encryptLocal || m_encryptStaticTunnelServer) {
+        if (!QSslSocket::supportsSsl()) {
+            logWarn("Encryption configured but SSL not available. Turning off encryption");
+            m_encryptLocal = false;
+            m_encryptStaticTunnelServer = false;
+        }
+    }
 
 	int hbInterval = settings->value(SYNTROCONTROL_PARAMS_HBINTERVAL).toInt();
 	m_heartbeatSendInterval =  hbInterval * SYNTRO_CLOCKS_PER_SEC;
@@ -87,6 +114,9 @@ void SyntroServer::initThread()
 		m_connectionIDMap[i] = -1;
 
 	loadStaticTunnels(settings);
+    loadValidTunnelSources(settings);
+
+    m_nextConnectionID = 0;
 	
 	m_multicastManager.m_server = this;
 	m_multicastManager.m_myUID = m_componentData.getMyUID();
@@ -138,6 +168,7 @@ void SyntroServer::loadStaticTunnels(QSettings *settings)
 		settings->setValue(SYNTROCONTROL_PARAMS_STATIC_NAME, "Tunnel");
 		settings->setValue(SYNTROCONTROL_PARAMS_STATIC_DESTIP_PRIMARY, "0.0.0.0");
 		settings->setValue(SYNTROCONTROL_PARAMS_STATIC_DESTIP_BACKUP, "");
+		settings->setValue(SYNTROCONTROL_PARAMS_STATIC_ENCRYPT, false);
 
 		settings->endArray();
 		return;
@@ -165,6 +196,12 @@ void SyntroServer::loadStaticTunnels(QSettings *settings)
 		component->tunnelStaticPrimary = primary;
 		component->tunnelStaticBackup = backup;
 		component->tunnelStaticName = settings->value(SYNTROCONTROL_PARAMS_STATIC_NAME).toString();
+        component->tunnelEncrypt = settings->value(SYNTROCONTROL_PARAMS_STATIC_ENCRYPT).toBool();
+
+        if (component->tunnelEncrypt && !QSslSocket::supportsSsl()) {
+            logWarn("Static tunnel uses encryption but SSL not available. Turning off encryption");
+            component->tunnelEncrypt = false;
+        }
 
 		component->syntroTunnel = new SyntroTunnel(this, component, NULL, NULL);
 		component->state = ConnWFHeartbeat;
@@ -173,6 +210,44 @@ void SyntroServer::loadStaticTunnels(QSettings *settings)
 	settings->endArray();
 }
 
+void SyntroServer::loadValidTunnelSources(QSettings *settings)
+{
+    int count = 0;
+    QString dummy("0000000000000000");
+
+   	settings->beginGroup(SYNTROCONTROL_PARAMS_GROUP);
+
+	int	size = settings->beginReadArray(SYNTROCONTROL_PARAMS_VALID_TUNNEL_SOURCES);
+	settings->endArray();
+
+    if (size == 0) {
+        settings->beginWriteArray(SYNTROCONTROL_PARAMS_VALID_TUNNEL_SOURCES);
+        settings->setArrayIndex(0);
+        settings->setValue(SYNTROCONTROL_PARAMS_VALID_TUNNEL_UID, dummy);
+        settings->endArray();
+        settings->endGroup();
+        return;
+    }
+
+    settings->beginReadArray(SYNTROCONTROL_PARAMS_VALID_TUNNEL_SOURCES);
+	for (int i = 0; i < size; i++) {
+		settings->setArrayIndex(i);
+		QString uidstr = settings->value(SYNTROCONTROL_PARAMS_VALID_TUNNEL_UID).toString();
+		if (uidstr.length() != (sizeof(SYNTRO_UID) * 2))
+			continue;
+		if (uidstr == dummy)
+			continue;
+
+        SYNTRO_UID uid;
+        SyntroUtils::UIDSTRtoUID((char *)qPrintable(uidstr), &uid);
+        m_validTunnelSources.append(uid);	
+        count++;
+    }
+	settings->endArray();
+    logInfo(QString("Loaded %1 valid tunnel sources").arg(count));
+
+    settings->endGroup();
+}
 
 bool SyntroServer::openSockets()
 {
@@ -225,7 +300,7 @@ void SyntroServer::setComponentSocket(SS_COMPONENT *syntroComponent, SyntroSocke
 	syntroComponent->connectionID = sock->sockGetConnectionID(); // record the connection ID
 
 	if (m_connectionIDMap[syntroComponent->connectionID] != -1) {
-		logWarn(QString("Connection ID %1 allocted to slot %2 but should be free")
+		logWarn(QString("Connection ID %1 allocated to slot %2 but should be free")
 			.arg(syntroComponent->connectionID)
 			.arg(m_connectionIDMap[syntroComponent->connectionID]));
 	}
@@ -253,14 +328,26 @@ SyntroSocket *SyntroServer::getNewSocket(bool staticTunnel)
 	SyntroSocket *sock;
 	int	retVal;
 
-	sock = new SyntroSocket(this);
+    int id = getNextConnectionID();
+
+    if (id == -1)
+        return NULL;
+
+	sock = new SyntroSocket(this, id, staticTunnel ? m_encryptStaticTunnelServer : m_encryptLocal);
 	if (sock == NULL)
 		return sock;
-	if (!staticTunnel)
-		retVal = sock->sockCreate(m_socketNumber, SOCK_SERVER, 1);	
-	else
-		retVal = sock->sockCreate(m_staticTunnelSocketNumber, SOCK_SERVER, 1);	// create with reuse flag set to avoid bind failing on restart
-	if (retVal == 0) {
+	if (!staticTunnel) {
+        if (m_encryptLocal)
+		    retVal = sock->sockCreate(m_socketNumberEncrypt, SOCK_SERVER, 1);
+        else
+		    retVal = sock->sockCreate(m_socketNumber, SOCK_SERVER, 1);
+    } else {
+        if (m_encryptStaticTunnelServer)
+		    retVal = sock->sockCreate(m_staticTunnelSocketNumberEncrypt, SOCK_SERVER, 1);	// create with reuse flag set to avoid bind failing on restart
+        else
+            retVal = sock->sockCreate(m_staticTunnelSocketNumber, SOCK_SERVER, 1);	// create with reuse flag set to avoid bind failing on restart
+    }
+    if (retVal == 0) {
 		delete sock;
 		return NULL;
 	}
@@ -271,9 +358,22 @@ SyntroSocket *SyntroServer::getNewSocket(bool staticTunnel)
 	return sock;
 }
 
-//	SyConnected - handle connected outgoing calls (tunnel sources)
+int SyntroServer::getNextConnectionID()
+{
+    for (int i = 0; i < SYNTRO_MAX_CONNECTIONIDS; i++) {
+    	if (++m_nextConnectionID == SYNTRO_MAX_CONNECTIONIDS)
+	    	m_nextConnectionID = 0;					
 
-bool	SyntroServer::syConnected(SS_COMPONENT *syntroComponent)
+        if (m_connectionIDMap[m_nextConnectionID] == -1)
+            return m_nextConnectionID;
+    }
+    logError("No free connection IDs");
+    return -1;                                              // none available
+}
+
+//	syConnected - handle connected outgoing calls (tunnel sources)
+
+bool SyntroServer::syConnected(SS_COMPONENT *syntroComponent)
 {
 	if (!syntroComponent->tunnelSource) {
 		logWarn("Connected message on component that is not a tunnel source");
@@ -307,7 +407,11 @@ bool	SyntroServer::syAccept(bool staticTunnel)
 	int bufSize = SYNTRO_MESSAGE_MAX * 3;
 	bool retVal;
 
-	sock = new SyntroSocket(this);
+    int id = getNextConnectionID();
+    if (id == -1)
+        return false;
+
+	sock = new SyntroSocket(this, id, false);
 	if (!staticTunnel)
 		retVal = m_listSyntroLinkSock->sockAccept(*sock, IPStr, &componentPort);
 	else
@@ -350,6 +454,10 @@ bool	SyntroServer::syAccept(bool staticTunnel)
 	component->lastHeartbeatReceived = SyntroClock();
 	component->heartbeatInterval = m_heartbeatSendInterval;	// use this until we get it from received heartbeat
 	component->state = ConnWFHeartbeat;
+    if (staticTunnel) {
+        component->tunnelDest = true;
+        component->tunnelStatic = true;
+    }
 	return	true;
 }
 
@@ -411,6 +519,7 @@ SS_COMPONENT	*SyntroServer::getFreeComponent()
 			component->tunnelDest = false;
 			component->tunnelSource = false;
 			component->tunnelStatic = false;
+            component->tunnelEncrypt = false;
 			component->syntroLink = NULL;
 			component->sock = NULL;
 			component->syntroTunnel = NULL;
@@ -531,11 +640,39 @@ void SyntroServer::processReceivedDataDemux(SS_COMPONENT *syntroComponent, int c
 				syntroComponent->heartbeatInterval = SyntroUtils::convertUC2ToInt(heartbeat->hello.interval) * SYNTRO_CLOCKS_PER_SEC;	// record advertised heartbeat interval
 			memcpy(&(syntroComponent->heartbeat), message, sizeof(SYNTRO_HEARTBEAT));
 			if (syntroComponent->state == ConnWFHeartbeat) {	// first time for heartbeat
+
+                //  Only SyntroControls can connect via tunnels
+
+			    if (syntroComponent->tunnelDest && (strcmp(syntroComponent->heartbeat.hello.componentType, COMPTYPE_CONTROL) != 0)) {
+                    logError("Received non-control heartbeat on tunnel connection");
+ 				    free(message);
+				    break;
+                }
+
+                // check is this is dynamic tunnel dest
+
+                if (!syntroComponent->tunnelSource && !syntroComponent->tunnelStatic &&
+				    (strcmp(syntroComponent->heartbeat.hello.componentType, COMPTYPE_CONTROL) == 0))
+                    syntroComponent->tunnelDest = true;
+
+                //  Validate tunnel source against local UID list
+
+                int validIndex;
+                if (syntroComponent->tunnelStatic && syntroComponent->tunnelDest) {
+                    for (validIndex = 0; validIndex < m_validTunnelSources.count(); validIndex++) {
+                        if (SyntroUtils::compareUID(&m_validTunnelSources[validIndex], &syntroComponent->heartbeat.hello.componentUID))
+                            break;
+                    }
+                    if (validIndex == m_validTunnelSources.count()) {
+                        logError(QString("Tunnel: failed to validate client %1")
+                            .arg(SyntroUtils::displayUID(&syntroComponent->heartbeat.hello.componentUID)));
+ 				        free(message);
+    				    break;
+                    }
+                }
+
 				syntroComponent->state = ConnNormal;
 				logInfo(QString("New component %1").arg(SyntroUtils::displayUID(&syntroComponent->heartbeat.hello.componentUID)));
-				if (!syntroComponent->tunnelSource && 
-							(strcmp(syntroComponent->heartbeat.hello.componentType, COMPTYPE_CONTROL) == 0))
-					syntroComponent->tunnelDest = true;
 			}
 			updateSyntroStatus(syntroComponent);
 			length -= sizeof(SYNTRO_HEARTBEAT);
@@ -677,7 +814,7 @@ void SyntroServer::sendTunnelHeartbeat(SS_COMPONENT *syntroComponent)
 
 // SyntroServer message handlers
 
-void SyntroServer::timerEvent(QTimerEvent *event)
+void SyntroServer::timerEvent(QTimerEvent * /* event */)
 {
 	syntroBackground();
 }
@@ -811,6 +948,7 @@ void	SyntroServer::processHelloUp(HELLOENTRY *helloEntry)
 		return;
 	}
 
+    component->tunnelEncrypt = m_encryptLocal;
 	component->syntroTunnel = new SyntroTunnel(this, component, m_hello, helloEntry);
 
 	component->inUse = true;
@@ -1000,6 +1138,7 @@ void SyntroServer::updateSyntroStatus(SS_COMPONENT *syntroComponent)
 
 	QStringList list;
 	QString heartbeatInterval;
+	QString linkType;
 	QString appName;
 	QString componentType;
 	QString uid;
@@ -1016,6 +1155,24 @@ void SyntroServer::updateSyntroStatus(SS_COMPONENT *syntroComponent)
             heartbeatInterval = "Tunnel dest";				// ...indicate other end is a tunnel dest
 		else
             heartbeatInterval = QString ("%1") .arg(syntroComponent->heartbeatInterval / SYNTRO_CLOCKS_PER_SEC);
+
+        linkType = "Unknown";
+
+        if (syntroComponent->sock != NULL) {
+            if (syntroComponent->tunnelStatic) {
+                if (syntroComponent->tunnelSource)
+                    linkType = syntroComponent->sock->usingSSL() ? "SSL static tunnel src" : "Static tunnel src";
+                else
+                    linkType = syntroComponent->sock->usingSSL() ? "SSL static tunnel dst" : "Static tunnel dst";
+            } else {
+                if (syntroComponent->tunnelSource)
+                    linkType = syntroComponent->sock->usingSSL() ? "SSL local tunnel src" : "Local tunnel src";
+                else if (syntroComponent->tunnelDest)
+                    linkType = syntroComponent->sock->usingSSL() ? "SSL local tunnel dst" : "Local tunnel dst";
+                else
+                    linkType = syntroComponent->sock->usingSSL() ? "SSL local link" : "Local link";
+            }
+        }
 	} else {
 		if (syntroComponent->tunnelStatic)
 			appName = syntroComponent->tunnelStaticName;
@@ -1027,6 +1184,7 @@ void SyntroServer::updateSyntroStatus(SS_COMPONENT *syntroComponent)
 	list.append(uid);
 	list.append(ipaddr);
 	list.append(heartbeatInterval);
+    list.append(linkType);
 	emit UpdateSyntroStatusBox(syntroComponent->index, list);
 }
 
