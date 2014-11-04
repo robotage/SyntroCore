@@ -23,6 +23,9 @@
 #include "SyntroUtils.h"
 #include "SyntroThread.h"
 
+#include <qsslsocket.h>
+#include <qsslcipher.h>
+
 //	Define the standard socket types if necessary
 
 #ifndef	SOCK_STREAM
@@ -31,13 +34,46 @@
 #define	SOCK_SERVER		2
 #endif
 
+class TCPServer : public QTcpServer
+{
+public:
+    TCPServer(QObject *parent = 0);
+    bool usingSSL() { return m_encrypt; }
+
+protected:
+    bool m_encrypt;
+
+    QString m_logTag;
+};
+
+class SSLServer : public TCPServer
+{
+    Q_OBJECT
+
+public:
+    SSLServer(QObject *parent = 0);
+    virtual ~SSLServer() {};
+
+protected:
+#if QT_VERSION < 0x050000
+    virtual void incomingConnection(int socket);
+#else
+    virtual void incomingConnection(qintptr socket);
+#endif
+protected slots:
+    void ready();
+    void sslErrors(const QList<QSslError>& errors);
+    void peerVerifyError(const QSslError & error);
+};
+
+
 class SYNTROLIB_EXPORT SyntroSocket : public QObject
 {
 	Q_OBJECT
 
 public:
 	SyntroSocket(const QString& logTag);
-	SyntroSocket(SyntroThread	*thread);
+	SyntroSocket(SyntroThread *thread, int connectionID, bool encrypt);
 	virtual ~SyntroSocket();
 
 	void sockSetThread(SyntroThread *thread);
@@ -60,6 +96,7 @@ public:
 	int sockReceive(void *buf, int bufLen);
 	int sockSend(void *buf, int bufLen);
 	int sockPendingDatagramSize();
+    bool usingSSL() { return m_encrypt; }
 
 public slots:
 	void onConnect();
@@ -69,15 +106,18 @@ public slots:
 	void onSend(qint64 bytes);
 	void onError(QAbstractSocket::SocketError socketError);
 	void onState(QAbstractSocket::SocketState socketState);
+    void sslErrors(const QList<QSslError> & errors);
+    void peerVerifyError(const QSslError & error);
 
 protected:
 	SyntroThread	*m_ownerThread;
+    bool m_encrypt;                                         // if using SSL
 	int m_connectionID;
 	int m_sockType;											// the socket type
 	int m_sockPort;											// the socket port number
 	QUdpSocket *m_UDPSocket;
-	QTcpSocket *m_TCPSocket;
-	QTcpServer *m_server;
+	QTcpSocket *m_TCPSocket;                                // this could be a QSslSocket if SSL in use
+	TCPServer *m_server;                                    // This could be SSLServer if SSL in use
 
 	void clearSocket();										// clear up all socket fields
 	int m_onConnectMsg;

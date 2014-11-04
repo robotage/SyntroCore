@@ -1095,6 +1095,7 @@ void Endpoint::initThread()
 	serviceInit();
 	CFSInit();
 	m_controlRevert = settings->value(SYNTRO_PARAMS_CONTROLREVERT).toBool();
+	m_encryptLink = settings->value(SYNTRO_PARAMS_ENCRYPT_LINK).toBool();
 
 	m_heartbeatSendInterval = m_configHeartbeatInterval * SYNTRO_CLOCKS_PER_SEC;
 	m_heartbeatTimeoutPeriod = m_heartbeatSendInterval * m_configHeartbeatTimeout;
@@ -1297,8 +1298,8 @@ bool Endpoint::endpointSocketMessage(SyntroThreadMsg *msg)
 			logInfo(QString("SyntroLink connected"));
 			forceDE();
 			endpointConnected();
-			updateState(QString("Connected to %1 in %2 mode").arg(m_helloEntry.hello.appName)
-					.arg(m_priorityMode ? "priority" : "list"));
+			updateState(QString("Connected to %1 in %2 mode %3").arg(m_helloEntry.hello.appName)
+					.arg(m_priorityMode ? "priority" : "list").arg(m_encryptLink ? "using SSL" : "unencrypted"));
 			return true;
 
 		case ENDPOINT_ONCLOSE_MESSAGE:
@@ -1992,7 +1993,7 @@ bool Endpoint::syntroConnect()
 		delete m_syntroLink;
 	}
 
-	m_sock = new SyntroSocket(this);
+	m_sock = new SyntroSocket(this, 0, m_encryptLink);
 	m_syntroLink = new SyntroLink(m_logTag);
 
 	returnValue = m_sock->sockCreate(0, SOCK_STREAM);
@@ -2005,14 +2006,17 @@ bool Endpoint::syntroConnect()
 	m_sock->sockSetReceiveMsg(ENDPOINT_ONRECEIVE_MESSAGE);
 	m_sock->sockSetReceiveBufSize(size);
 
-	returnValue = m_sock->sockConnect(m_helloEntry.IPAddr, SYNTRO_SOCKET_LOCAL);
+    if (m_encryptLink)
+    	returnValue = m_sock->sockConnect(m_helloEntry.IPAddr, SYNTRO_SOCKET_LOCAL_ENCRYPT);
+    else
+    	returnValue = m_sock->sockConnect(m_helloEntry.IPAddr, SYNTRO_SOCKET_LOCAL);
 	if (!returnValue) {
 		TRACE0("Connect attempt failed");
 		return false;
 	}
 	m_connectInProgress = true;
 
-	QString str = QString("Trying connect to %1").arg(m_helloEntry.IPAddr);
+	QString str = QString("Trying connect to %1 %2").arg(m_helloEntry.IPAddr).arg(m_encryptLink ? "using SSL" : "unencrypted");
 	updateState(str);
 	logDebug(str);
 	return	true;

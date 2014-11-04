@@ -19,10 +19,9 @@
 
 #include "SyntroSocket.h"
 
-int nextConnectionID = 0;										// used to allocate unique IDs to socket connections
-QMutex nextConnectionIDLock;									// to control access to the unique ID generator
-
 // SyntroSocket
+
+//  This constructor only used by the Hello system
 
 SyntroSocket::SyntroSocket(const QString& logTag)
 {
@@ -30,16 +29,15 @@ SyntroSocket::SyntroSocket(const QString& logTag)
 	clearSocket();
 }
 
-SyntroSocket::SyntroSocket(SyntroThread *thread)
+//  This is what everyone else uses
+
+SyntroSocket::SyntroSocket(SyntroThread *thread, int connectionID, bool encrypt)
 {
 	clearSocket();
 	m_ownerThread = thread;
-	nextConnectionIDLock.lock();			
-	m_connectionID = nextConnectionID++;					// allocate a new connection ID
-	TRACE1("Allocated new socket with connection ID %d", m_connectionID);
-	if (nextConnectionID == SYNTRO_MAX_CONNECTIONIDS)
-		nextConnectionID = 0;								// wrap around
-	nextConnectionIDLock.unlock();
+	m_connectionID = connectionID;
+    m_encrypt = encrypt;
+  	TRACE1("Allocated new socket with connection ID %d", m_connectionID);
 }
 
 void SyntroSocket::clearSocket()
@@ -76,13 +74,25 @@ int	SyntroSocket::sockCreate(int nSocketPort, int nSocketType, int nFlags)
 			return ret;
 
 		case SOCK_STREAM:
-			m_TCPSocket = new QTcpSocket(this);
-			connect(m_TCPSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onError(QAbstractSocket::SocketError)));
-			connect(m_TCPSocket, SIGNAL(stateChanged( QAbstractSocket::SocketState) ), this, SLOT(onState( QAbstractSocket::SocketState)));
+            if (m_encrypt) {
+		        m_TCPSocket = new QSslSocket(this);
+                connect((QSslSocket *)m_TCPSocket, SIGNAL(sslErrors(const QList<QSslError>&)),
+                    this, SLOT(sslErrors(const QList<QSslError>&)));
+                connect((QSslSocket *)m_TCPSocket, SIGNAL(peerVerifyError(const QSslError&)),
+                    this, SLOT(peerVerifyError(const QSslError&)));
+                ((QSslSocket *)m_TCPSocket)->setPeerVerifyMode(QSslSocket::VerifyNone);
+           } else {
+		        m_TCPSocket = new QTcpSocket(this);
+		        connect(m_TCPSocket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(onError(QAbstractSocket::SocketError)));
+            }
+		    connect(m_TCPSocket, SIGNAL(stateChanged( QAbstractSocket::SocketState) ), this, SLOT(onState( QAbstractSocket::SocketState)));
 			return 1;
 
 		case SOCK_SERVER:
-			m_server = new QTcpServer(this);
+            if (m_encrypt)
+			    m_server = new SSLServer(this);
+            else
+			    m_server = new TCPServer(this);
 			return 1;
 
 		default:
@@ -97,18 +107,22 @@ bool SyntroSocket::sockConnect(const char *addr, int port)
 		logError(QString("Incorrect socket type for create %1").arg(m_sockType));
 		return false;
 	}
-	m_TCPSocket->connectToHost(addr, port);
+    if (m_encrypt)
+        ((QSslSocket *)m_TCPSocket)->connectToHostEncrypted(addr, port);
+    else
+        m_TCPSocket->connectToHost(addr, port);
 	return true;
 }
 
 bool SyntroSocket::sockAccept(SyntroSocket& sock, char *IpAddr, int *port)
 {
-	sock.m_TCPSocket = m_server->nextPendingConnection();
-	strcpy(IpAddr, (char *)sock.m_TCPSocket->peerAddress().toString().toLocal8Bit().constData());
-	*port = (int)sock.m_TCPSocket->peerPort();
+    sock.m_TCPSocket = m_server->nextPendingConnection();
+   	strcpy(IpAddr, (char *)sock.m_TCPSocket->peerAddress().toString().toLocal8Bit().constData());
+    *port = (int)sock.m_TCPSocket->peerPort();
 	sock.m_sockType = SOCK_STREAM;
 	sock.m_ownerThread = m_ownerThread;
 	sock.m_state = QAbstractSocket::ConnectedState;
+    sock.m_encrypt = m_server->usingSSL();
 	return true;
 }
 
@@ -123,17 +137,17 @@ bool SyntroSocket::sockClose()
 			break;
 
 		case SOCK_STREAM:
-			disconnect(m_TCPSocket, 0, 0, 0);
-			m_TCPSocket->close();
-			delete m_TCPSocket;
-			m_TCPSocket = NULL;
-			break;
+		    disconnect(m_TCPSocket, 0, 0, 0);
+		    m_TCPSocket->close();
+		    delete m_TCPSocket;
+		    m_TCPSocket = NULL;
+		    break;
 
 		case SOCK_SERVER:
-			disconnect(m_server, 0, 0, 0);
-			m_server->close();
-			delete m_server;
-			m_server = NULL;
+		    disconnect(m_server, 0, 0, 0);
+		    m_server->close();
+		    delete m_server;
+		    m_server = NULL;
 			break;
 	}
 	clearSocket();
@@ -146,7 +160,7 @@ int	SyntroSocket::sockListen()
 		logError(QString("Incorrect socket type for listen %1").arg(m_sockType));
 		return false;
 	}
-	return m_server->listen(QHostAddress::Any, m_sockPort);
+    return m_server->listen(QHostAddress::Any, m_sockPort);
 }
 
 
@@ -159,7 +173,7 @@ int	SyntroSocket::sockReceive(void *lpBuf, int nBufLen)
 		case SOCK_STREAM:
 			if (m_state != QAbstractSocket::ConnectedState)
 				return 0;
-			return m_TCPSocket->read((char *)lpBuf, nBufLen);
+		    return m_TCPSocket->read((char *)lpBuf, nBufLen);
 
 		default:
 			logError(QString("Incorrect socket type for receive %1").arg(m_sockType));
@@ -175,7 +189,7 @@ int	SyntroSocket::sockSend(void *lpBuf, int nBufLen)
 	}
 	if (m_state != QAbstractSocket::ConnectedState)
 		return 0;
-	return m_TCPSocket->write((char *)lpBuf, nBufLen); 
+  	return m_TCPSocket->write((char *)lpBuf, nBufLen); 
 }
 
 bool SyntroSocket::sockEnableBroadcast(int)
@@ -189,7 +203,7 @@ bool SyntroSocket::sockSetReceiveBufSize(int nSize)
 		logError(QString("Incorrect socket type for SetReceiveBufferSize %1").arg(m_sockType));
 		return false;
 	}
-	m_TCPSocket->setReadBufferSize(nSize);
+    m_TCPSocket->setReadBufferSize(nSize);
 	return true;
 }
 
@@ -205,7 +219,7 @@ bool SyntroSocket::sockSetSendBufSize(int)
 }
 
 
-int		SyntroSocket::sockSendTo(const void *buf, int bufLen, int hostPort, char *host)
+int SyntroSocket::sockSendTo(const void *buf, int bufLen, int hostPort, char *host)
 {
 	if (m_sockType != SOCK_DGRAM) {
 		logError(QString("Incorrect socket type for SendTo %1").arg(m_sockType));
@@ -278,8 +292,7 @@ void SyntroSocket::sockSetAcceptMsg(int msg)
 		return;
 	}
 	m_onAcceptMsg = msg;
-	connect(m_server, SIGNAL(newConnection()), this, SLOT(onAccept()));
-
+    connect(m_server, SIGNAL(newConnection()), this, SLOT(onAccept()));
 }
 
 void SyntroSocket::sockSetCloseMsg(int msg)
@@ -289,7 +302,7 @@ void SyntroSocket::sockSetCloseMsg(int msg)
 		return;
 	}
 	m_onCloseMsg = msg;
-	connect(m_TCPSocket, SIGNAL(disconnected()), this, SLOT(onClose()));
+    connect(m_TCPSocket, SIGNAL(disconnected()), this, SLOT(onClose()));
 }
 
 void SyntroSocket::sockSetReceiveMsg(int msg)
@@ -302,7 +315,7 @@ void SyntroSocket::sockSetReceiveMsg(int msg)
 			break;
 
 		case SOCK_STREAM:
-			connect(m_TCPSocket, SIGNAL(readyRead()), this, SLOT(onReceive()), Qt::DirectConnection);
+		    connect(m_TCPSocket, SIGNAL(readyRead()), this, SLOT(onReceive()), Qt::DirectConnection);
 			break;
 
 		default:
@@ -321,7 +334,7 @@ void SyntroSocket::sockSetSendMsg(int msg)
 			break;
 
 		case SOCK_STREAM:
-			connect(m_TCPSocket, SIGNAL(bytesWritten(qint64)), this, SLOT(onSend(qint64)), Qt::DirectConnection);
+		    connect(m_TCPSocket, SIGNAL(bytesWritten(qint64)), this, SLOT(onSend(qint64)), Qt::DirectConnection);
 			break;
 
 		default:
@@ -370,12 +383,12 @@ void SyntroSocket::onError(QAbstractSocket::SocketError errnum)
 			break;
 
 		case SOCK_STREAM:
-			logDebug(QString("TCP socket error %1").arg(m_TCPSocket->errorString()));
+		    logDebug(QString("TCP socket error %1").arg(m_TCPSocket->errorString()));
 			break;
 	}
 }
 
-void	SyntroSocket::onState(QAbstractSocket::SocketState socketState)
+void SyntroSocket::onState(QAbstractSocket::SocketState socketState)
 {
 	switch (m_sockType)
 	{
@@ -387,7 +400,114 @@ void	SyntroSocket::onState(QAbstractSocket::SocketState socketState)
 			logDebug(QString("TCP socket state %1").arg(socketState));
 			break;
 	}
-	if ((socketState == QAbstractSocket::UnconnectedState) && (m_state < QAbstractSocket::ConnectedState))
+	if ((socketState == QAbstractSocket::UnconnectedState) && (m_state < QAbstractSocket::ConnectedState)) {
+        logDebug("onClose generated by onState"); 
 		onClose();									// no signal generated in this situation
+    }
 	m_state = socketState;
+}
+
+
+void SyntroSocket::peerVerifyError(const QSslError & error)
+{
+    QString msg = "Peer verify error from " + m_TCPSocket->peerAddress().toString() + ": " 
+        + error.errorString() /* + "\n" + error.certificate().toText() */ ;
+    logWarn(msg);
+}
+
+void SyntroSocket::sslErrors(const QList<QSslError> & errors) {
+
+    foreach(QSslError err, errors) {
+        QString msg = "SSL handshake error from " + m_TCPSocket->peerAddress().toString() 
+            + ": " + err.errorString() /* + "\n" + err.certificate().toText() */ ;
+        logWarn(msg);
+    }
+
+    QSslSocket *sslSocket = qobject_cast<QSslSocket*>(sender());
+    sslSocket->ignoreSslErrors();
+
+}
+
+//----------------------------------------------------------
+//
+//  TCPServer
+
+TCPServer::TCPServer(QObject *parent) : QTcpServer(parent)
+{
+    m_encrypt = false;
+    m_logTag = "TCPServer";
+}
+
+//----------------------------------------------------------
+//
+//  SSLServer
+
+SSLServer::SSLServer(QObject *parent) : TCPServer(parent)
+{
+    m_encrypt = true;
+    m_logTag = "SSLServer";
+}
+
+#if QT_VERSION < 0x050000
+void SSLServer::incomingConnection(int socket)
+#else
+void SSLServer::incomingConnection(qintptr socket)
+#endif
+{
+
+    Q_UNUSED(socket);
+
+    //
+    // Prepare a new server socket for the incoming connection
+    //
+    QSslSocket *sslSocket = new QSslSocket();
+
+    sslSocket->setProtocol( QSsl::AnyProtocol );
+    sslSocket->setPeerVerifyMode(QSslSocket::VerifyNone);
+    sslSocket->setLocalCertificate("./server.crt", QSsl::Pem);
+    sslSocket->setPrivateKey("./server.key", QSsl::Rsa, QSsl::Pem, "");
+    sslSocket->setProtocol(QSsl::TlsV1SslV3);
+
+    if (sslSocket->setSocketDescriptor(socket)) {
+       connect(sslSocket, SIGNAL(encrypted()), this, SLOT(ready()));
+       connect(sslSocket, SIGNAL(sslErrors(const QList<QSslError>&)), this, SLOT(sslErrors(const QList<QSslError>&)));
+       connect(sslSocket, SIGNAL(peerVerifyError(const QSslError&)), this, SLOT(peerVerifyError(const QSslError&)));
+       addPendingConnection(sslSocket);
+
+       sslSocket->startServerEncryption();
+
+    }
+    else {
+       delete sslSocket;
+    }
+}
+
+void SSLServer::ready() {
+
+    QSslSocket *sslSocket = qobject_cast<QSslSocket*>(sender());
+
+    QSslCipher ciph = sslSocket->sessionCipher();
+    QString cipher = QString("%1, %2 (%3/%4)").arg(ciph.authenticationMethod())
+                          .arg(ciph.name()).arg(ciph.usedBits()).arg(ciph.supportedBits());
+
+    QString msg = "SSL session from " + sslSocket->peerAddress().toString() + " established with cipher: " + cipher;
+    logDebug(msg);
+}
+
+void SSLServer::peerVerifyError(const QSslError & error)
+{
+    QString msg = "Peer verify error: " + error.errorString() /* + "\n" + error.certificate().toText() */;
+    logWarn(msg);
+}
+
+void SSLServer::sslErrors(const QList<QSslError> & errors) {
+
+    foreach(QSslError err, errors) {
+        QString msg = "SSL handshake error: " + err.errorString() /* + "\n" + err.certificate().toText() */;
+        logWarn(msg);
+    }
+
+    QSslSocket *sslSocket = qobject_cast<QSslSocket*>(sender());
+    sslSocket->ignoreSslErrors();
+
 }

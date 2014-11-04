@@ -81,6 +81,7 @@ class SyntroClockObject;
 #define	SYNTRO_PARAMS_HBTIMEOUT			"heartbeatTimeout"	// number of hb intervals without hb before timeout
 #define	SYNTRO_PARAMS_LOG_HBINTERVAL	"logHeartbeatInterval"	// time between sent heartbeats for log
 #define	SYNTRO_PARAMS_LOG_HBTIMEOUT		"logHeartbeatTimeout"	// number of hb intervals without hb before timeout for log
+#define SYNTRO_PARAMS_ENCRYPT_LINK      "encryptLink"       // true if use SSL for links
 
 #define	SYNTRO_PARAMS_CONTROL_NAMES		"controlNames"		// ordered list of SyntroControls as an array
 #define	SYNTRO_PARAMS_CONTROL_NAME		"controlName"		// an entry in the array

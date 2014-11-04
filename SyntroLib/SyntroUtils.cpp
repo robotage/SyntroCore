@@ -643,6 +643,9 @@ void SyntroUtils::loadStandardSettings(const char *appType, QStringList arglist)
 	if (!settings->contains(SYNTRO_PARAMS_LOCALCONTROL))
         settings->setValue(SYNTRO_PARAMS_LOCALCONTROL, true);
 	
+	if (!settings->contains(SYNTRO_PARAMS_ENCRYPT_LINK))
+        settings->setValue(SYNTRO_PARAMS_ENCRYPT_LINK, false);
+	
 	if (!settings->contains(SYNTRO_PARAMS_LOCALCONTROL_PRI))
 		settings->setValue(SYNTRO_PARAMS_LOCALCONTROL_PRI, 0);		
 	
@@ -998,7 +1001,7 @@ bool SyntroUtils::avmuxHeaderValidate(SYNTRO_RECORD_AVMUX *avmuxHead, int length
 	videoLength = SyntroUtils::convertUC4ToInt(avmuxHead->videoSize);
 	audioLength = SyntroUtils::convertUC4ToInt(avmuxHead->audioSize);
 
-    if (length != (sizeof(SYNTRO_RECORD_AVMUX) + muxLength + videoLength + audioLength))
+    if (length != ((int)sizeof(SYNTRO_RECORD_AVMUX) + muxLength + videoLength + audioLength))
 		return false;
 
 	if (muxPtr != NULL)

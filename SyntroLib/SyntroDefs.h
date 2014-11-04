@@ -22,7 +22,7 @@
 
 //	Version
 
-#define	SYNTROLIB_VERSION	"RT1.0.0"
+#define	SYNTROLIB_VERSION	"RT1.0.1"
 
 //	Timer definition
 //
@@ -52,10 +52,14 @@
 
 #define	SYNTRO_SERVICE_LOOKUP_INTERVAL		(5 * SYNTRO_CLOCKS_PER_SEC)	// 5 seconds interval between service lookup requests
 
-#define	SYNTRO_SOCKET_LOCAL		1661						// socket for the SyntroControl
+#define	SYNTRO_SOCKET_LOCAL		        1661				// socket for the SyntroControl
+#define	SYNTRO_SOCKET_LOCAL_ENCRYPT 	1662				// SSL socket for the SyntroControl
 
-#define	SYNTRO_PRIMARY_SOCKET_STATICTUNNEL	1808			// socket for primary static SyntroControl tunnels
-#define	SYNTRO_BACKUP_SOCKET_STATICTUNNEL	1809			// socket for backup static SyntroControl tunnels
+#define	SYNTRO_PRIMARY_SOCKET_STATICTUNNEL	1806			// socket for primary static SyntroControl tunnels
+#define	SYNTRO_BACKUP_SOCKET_STATICTUNNEL	1807			// socket for backup static SyntroControl tunnels
+
+#define	SYNTRO_PRIMARY_SOCKET_STATICTUNNEL_ENCRYPT	1808	// SSL socket for primary static SyntroControl tunnels
+#define	SYNTRO_BACKUP_SOCKET_STATICTUNNEL_ENCRYPT	1809	// SSL socket for backup static SyntroControl tunnels
 
 #define	SYNTRO_MAX_CONNECTEDCOMPONENTS	512					// maximum directly connected components to a component
 #define	SYNTRO_MAX_CONNECTIONIDS		(SYNTRO_MAX_CONNECTEDCOMPONENTS * 2) // used to uniquely identify sockets
@@ -403,6 +407,8 @@ typedef struct
 #define SYNTRO_STREAMNAME_ZIGBEE_MULTICAST  "zbmc"
 #define SYNTRO_STREAMNAME_HOMEAUTOMATION	"ha"
 #define SYNTRO_STREAMNAME_THUMBNAIL         "thumbnail"
+#define SYNTRO_STREAMNAME_IMAGE             "image"
+#define SYNTRO_STREAMNAME_GLOVE             "glove"
 
 //	Standard E2E stream names
 
@@ -446,6 +452,8 @@ typedef struct
 #define SYNTRO_RECORD_TYPE_PRESSURE		10					// air pressure sensor
 #define SYNTRO_RECORD_TYPE_ZIGBEE		11					// zigbee multicast data
 #define	SYNTRO_RECORD_TYPE_AVMUX		12					// an avmux stream record
+#define	SYNTRO_RECORD_TYPE_IMAGE		13					// an image stream record
+#define	SYNTRO_RECORD_TYPE_GLOVE		14					// glove pose data
 
 #define	SYNTRO_RECORD_TYPE_USER		(0x8000)				// user defined codes start here
 

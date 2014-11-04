@@ -4,6 +4,12 @@ The core SyntroNet libraries and applications.
 
 Check out www.richards-tech.com for more details.
 
+### Release history
+
+#### November 4 2012 - 1.0.1
+
+Added some #defines to SyntroDefs.h for SyntroGlove.
+
 #### Applications
 
 * SyntroAlert

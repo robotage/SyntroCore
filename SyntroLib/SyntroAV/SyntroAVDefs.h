@@ -64,7 +64,7 @@ typedef enum
 	SYNTRO_RECORD_TYPE_VIDEO_THEORA,						// theora compression
 	SYNTRO_RECORD_TYPE_VIDEO_RTPMPEG4,						// mpeg 4 over RTP
 	SYNTRO_RECORD_TYPE_VIDEO_RTPCAPS,						// RTP caps message
-
+	SYNTRO_RECORD_TYPE_VIDEO_RTPH264,						// h.264 over RTP
 	// This entry marks the end of the enum
 
 	SYNTRO_RECORD_TYPE_VIDEO_END							// the end

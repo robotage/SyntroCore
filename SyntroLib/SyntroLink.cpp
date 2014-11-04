@@ -110,7 +110,6 @@ int SyntroLink::tryReceiving(SyntroSocket *sock)
 				if (!checkChecksum(&m_syntroMessage)) {
 					logError(QString("Incorrect header cksm"));
 					flushReceive(sock);
-					resetReceive(m_RXIPPriority);
 					continue;
 				}
 #ifdef SYNTROLINK_TRACE

@@ -472,6 +472,7 @@ private:
 	int m_port;												// the port to use for the connection
 	char m_controlName[ENDPOINT_MAX_SYNTROCONTROLS][SYNTRO_MAX_APPNAME];	// app names for the target SyntroControls
 	HELLOENTRY m_helloEntry;								// the HelloEntry we are using
+    bool m_encryptLink;                                     // true if encryption (SSL) in use for links
 
 	// heartbeat system defs
 
