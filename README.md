@@ -6,7 +6,7 @@ Check out www.richards-tech.com for more details.
 
 ### Release history
 
-#### November 4 2012 - 1.0.1
+#### November 4 2014 - 1.0.1
 
 Added some #defines to SyntroDefs.h for SyntroGlove.
 
