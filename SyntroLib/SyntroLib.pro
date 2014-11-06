@@ -37,8 +37,6 @@ unix {
 		avheaderfiles.path = /usr/local/include/syntro/SyntroAV
 		avheaderfiles.files += SyntroAV/*.h
 
-		robotheaderfiles.path = /usr/local/include/syntro/SyntroRobot
-		robotheaderfiles.files += SyntroRobot/*.h
 	}
 	else {
 	        target.path = /usr/lib
@@ -49,17 +47,13 @@ unix {
 		avheaderfiles.path = /usr/include/syntro/SyntroAV
 		avheaderfiles.files += SyntroAV/*.h
 
-		robotheaderfiles.path = /usr/include/syntro/SyntroRobot
-		robotheaderfiles.files += SyntroRobot/*.h
-
 		pkgconfigfiles.path = /usr/lib/pkgconfig
 		pkgconfigfiles.files = syntro.pc
 	}
 
 	INSTALLS += headerfiles \
 		avheaderfiles \
-		robotheaderfiles \
-                pkgconfigfiles \
+        pkgconfigfiles \
 		target
 }
 

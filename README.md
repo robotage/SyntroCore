@@ -6,6 +6,10 @@ Check out www.richards-tech.com for more details.
 
 ### Release history
 
+#### November 6 2014 - 1.1.0
+
+Corrected syntro.pc to come into line with current version number.
+
 #### November 4 2014 - 1.0.1
 
 Added some #defines to SyntroDefs.h for SyntroGlove.

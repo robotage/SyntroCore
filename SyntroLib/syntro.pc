@@ -7,6 +7,6 @@ includeavdir=${includedir}/SyntroAV
 
 Name: Syntro
 Description: Open Source Lightweight Compute Cloud Library
-Version: 1.0.0
+Version: 1.1.0
 Libs: -lSyntroLib -lSyntroGUI -lSyntroControlLib
 Cflags: -I${includedir} -I${includecontroldir} -I${includeavdir}
